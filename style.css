@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("bgg3.jpg"); /* замени на имя твоего фонового файла */
+  background-image: url("bg-image.jpg"); /* замени на имя твоего фонового файла */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -80,7 +80,7 @@ h3 {
 }
 
 section {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 }
 
 label {
@@ -219,7 +219,6 @@ label {
   font-family: 'Lora', serif;
   font-size: 16px;
   color: #2d6a4f;
-
 
 }
 
@@ -445,6 +444,18 @@ transform: translateY(-1px);
   height: 43px;
   transform: translate(-50%, -50%);
   background: url("gardener-woman.svg") no-repeat center;
+  background-size: contain;
+}
+
+.svg-divider-comments::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  background: url("community-comments.svg") no-repeat center;
   background-size: contain;
 }
 
