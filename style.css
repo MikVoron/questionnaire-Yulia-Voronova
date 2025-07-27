@@ -80,7 +80,7 @@ h3 {
 }
 
 section {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 label {
@@ -346,7 +346,7 @@ label {
 .svg-divider {
   position: relative;
   border: none;
-  height: 52px; /* высота контейнера — чтобы влезла иконка */
+  height: 46px; /* высота контейнера — чтобы влезла иконка */
   margin:5px auto;
 }
 
