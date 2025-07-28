@@ -167,12 +167,13 @@ button[type="submit"]:hover {
 
   h1, h2 {
     font-size: 22px;
+
   }
 }
 
 h4 {
 
-font-size: px;
+font-size: 17 px;
 }
 
 #print-button {
@@ -717,4 +718,5 @@ input[type="range"][name="activity_level"]::-webkit-slider-thumb {
   background-color: transparent;
   border: none;
 }
+
 

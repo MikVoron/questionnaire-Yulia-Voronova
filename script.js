@@ -109,3 +109,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // здесь остаются код для энергии и стресса — ты уже настроил их идеально!
 });
+

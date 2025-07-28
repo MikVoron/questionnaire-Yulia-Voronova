@@ -98,7 +98,7 @@
 				<h3>💡 2. Ваша энергия и самочувствие</h3>
 
 				<section class="printable-energy-level">
-					<h3>⚡ Уровень энергии</h3>
+					<h4>⚡ Уровень энергии</h4>
 					<p>Отметьте вариант, который лучше всего описывает ваш текущий уровень энергии:</p>
 
 					<label class="custom-radio">
@@ -132,16 +132,40 @@
 					</label>
 				</section>
 
-				<div class="activity-slider">
-					<label for="activity_level">🏃‍♂️ Насколько активный у Вас образ жизни?</label>
-					<div class="activity-hint">Двигайте ползунок и выберите Ваш вариант</div>
+				<section class="printable-activity-level">
+					<h4 class="checkbox-title">🏃‍♂️ Насколько активный у Вас образ жизни?</h4>
+					<p class="checkbox-note">Отметьте один вариант, который лучше всего отражает Вашу текущую активность:</p>
 
-					<input type="range" name="activity_level" id="activity_level" min="1" max="5" value="3" />
+					<label class="custom-radio">
+						<input type="radio" name="activity_level" value="1">
+						<span class="radiomark"></span>
+						Малоподвижный — преимущественно сидячий образ жизни 🛌
+					</label>
 
-					<div class="activity-value">
-						<span id="activityDisplay">3</span>
-					</div>
-				</div>
+					<label class="custom-radio">
+						<input type="radio" name="activity_level" value="2">
+						<span class="radiomark"></span>
+						Умеренная активность — немного движения🚶‍♂️
+					</label>
+
+					<label class="custom-radio">
+						<input type="radio" name="activity_level" value="3">
+						<span class="radiomark"></span>
+						Средняя активность — сбалансированный ритм 🚴
+					</label>
+
+					<label class="custom-radio">
+						<input type="radio" name="activity_level" value="4">
+						<span class="radiomark"></span>
+						Активный — регулярные занятия спортом 🤸‍♀️
+					</label>
+
+					<label class="custom-radio">
+						<input type="radio" name="activity_level" value="5">
+						<span class="radiomark"></span>
+						Высокоактивный — интенсивные нагрузки и движение 🏋️‍♂️
+					</label>
+				</section>
 
 			</section>
 
@@ -256,7 +280,7 @@
 				</label>
 
 				<section class="printable-stress-level">
-					<h3>🧠 Уровень ежедневного стресса</h3>
+					<h4>🧠 Уровень ежедневного стресса</h4>
 					<p>Отметьте уровень, который соответствует Вашему текущему состоянию:</p> <label class="custom-radio"> <input type="radio" name="wake_feeling" value="Просыпаюсь полным энергии"> <span class="checkmark"></span> 😌 Минимальный уровень стресса </label> <label class="custom-radio"> <input type="radio" name="wake_feeling" value="Просыпаюсь полным энергии"> <span class="checkmark"></span> 🙂 Низкий стресс </label> <label class="custom-radio"> <input type="radio" name="wake_feeling" value="Просыпаюсь полным энергии"> <span class="checkmark"></span> 😐 Умеренный стресс </label> <label class="custom-radio"> <input type="radio" name="wake_feeling" value="Просыпаюсь полным энергии"> <span class="checkmark"></span> 😟 Высокий стресс </label> <label class="custom-radio"> <input type="radio" name="wake_feeling" value="Просыпаюсь полным энергии"> <span class="checkmark"></span> 😣 Постоянный ежедневный стресс </label>
 
 				</section>
