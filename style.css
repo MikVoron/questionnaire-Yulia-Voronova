@@ -1,15 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("bg-image.jpg"); /* замени на имя твоего фонового файла */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-image: url("watercolor-green-peas-seamless-pattern-white-background_405327-1202.avif");
+  background-repeat: repeat-y;
+  background-size: 100% auto; /* растянуть по ширине, сохранить высоту */
+  background-position: top center;
+  background-color: #f8fdf7;
   font-family: 'Lora', 'Nunito', sans-serif;
   color: #1b4332;
-  /* background-color:#eaf4ef; */
 }
+
 
 .form-container {
   opacity: 0;
