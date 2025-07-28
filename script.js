@@ -1,9 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Кнопка печати
-  const printButton = document.getElementById("print-button");
-  if (printButton) {
-    printButton.addEventListener("click", () => window.print());
-  }
+  document.getElementById("print-button").addEventListener("click", () => {
+  // Открываем страницу №2 — например, form.html
+  const printWindow = window.open("pdf-content.html", "_blank");
+
+  // После загрузки контента вызываем печать
+  printWindow.onload = () => {
+    printWindow.focus();
+    printWindow.print(); // вызывает системную печать с возможностью сохранения PDF
+  };
+});
+
 
   // === Стресс ===
   const stressRange = document.getElementById('stress_level');

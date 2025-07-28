@@ -31,6 +31,24 @@ body {
   }
 }
 
+@media print {
+  body {
+    margin: 2cm;
+    font-size: 14pt;
+    line-height: 1.5;
+    color: #000;
+  }
+
+  .form-section {
+    page-break-inside: avoid;
+  }
+
+  input, textarea {
+    border: none;
+    background: none;
+  }
+}
+
 button {
   height: auto;
   min-height: 48px;
@@ -180,6 +198,7 @@ button[type="submit"]:hover {
 h4 {
 
 font-size: 17 px;
+color: #2d6a4f;
 }
 
 #print-button {
