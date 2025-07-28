@@ -34,6 +34,7 @@ body {
 button {
   height: auto;
   min-height: 48px;
+
 }
 
 .custom-checkbox,
@@ -83,6 +84,10 @@ section {
     margin-bottom: 1em;
 }
 
+.custom-section {
+	margin-bottom: 80px ;
+}
+
 label {
   display: block;
   margin-bottom: 1.5em; /* Было возможно меньше, увеличиваем */
@@ -102,6 +107,7 @@ textarea {
   color: #2d6a4f;
   padding-left: 28px; /* отступ слева для выравнивания с чекбоксами */
 }
+
 
 .light-input {
   margin-bottom: 16px; /* регулируй по вкусу */
@@ -235,6 +241,10 @@ label {
 
 }
 
+.custom-label {
+	margin-bottom: 60px;
+}
+
 .custom-checkbox {
   position: relative;
   padding-left: 36px;
@@ -246,6 +256,8 @@ label {
   align-items: center;
   gap: 12px;
 }
+
+
 
 .checkbox-title {
   display: block;
@@ -309,6 +321,7 @@ label {
   align-items: center;
   gap: 12px;
 }
+
 
 
 .custom-radio input[type="radio"] {
@@ -487,6 +500,15 @@ textarea:hover {
     position: relative;
     padding-left: 28px; /* отступ для кружочка */
     font-size: 17px;
+}
+
+.custom-radio-down {
+	margin-bottom: 80px;
+}
+
+.custom-radio-down--more {
+	margin-bottom: 100px;
+
 }
 
 /* Скрываем стандартный radio */
