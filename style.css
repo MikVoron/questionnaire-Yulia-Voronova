@@ -98,7 +98,7 @@ textarea {
   font-weight: bold;            /* жирное начертание */
   margin-bottom: 20px;           /* отступ снизу перед полем ввода */
   font-family: 'Lora', serif;   /* стиль соответствует остальному оформлению */
-  font-size: 16px;
+  font-size: 17px;
   color: #2d6a4f;
   padding-left: 28px; /* отступ слева для выравнивания с чекбоксами */
 }
@@ -138,17 +138,21 @@ button[type="submit"] {
   padding: 12px 24px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 
 button:hover {
-  background-color: #2d6a4f;
+  background-color: #52b788; /* немного светлее основной */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 button[type="submit"]:hover {
-  background-color: #40916c;
+  background-color: #52b788; /* немного светлее основной */
   transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 480px) {
@@ -163,24 +167,31 @@ button[type="submit"]:hover {
 
   h1, h2 {
     font-size: 22px;
-
   }
 }
 
+h4 {
+
+font-size: px;
+}
+
 #print-button {
-  background-color: #40916c;
+ background-color: #43aa8b;        /* основа — насыщенный зелёный */
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 12px 24px;
+  padding: 12px 20px;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 #print-button:hover {
-  background-color: #40916c;
+ background-color: #52b788; /* немного светлее основной */
   transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 form {
@@ -474,7 +485,7 @@ textarea:hover {
     cursor: pointer;
     position: relative;
     padding-left: 28px; /* отступ для кружочка */
-    font-size: 1rem;
+    font-size: 17px;
 }
 
 /* Скрываем стандартный radio */
