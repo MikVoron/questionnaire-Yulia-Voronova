@@ -24,12 +24,7 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
-  button[type="submit"],
-  #print-button {
-    background-color: #74c69d;
-  }
-}
+
 
 @media print {
   body {
@@ -201,24 +196,28 @@ font-size: 17 px;
 color: #2d6a4f;
 }
 
-#print-button {
- background-color: #43aa8b;        /* основа — насыщенный зелёный */
+
+
+.pdf-download-button {
+  background-color: #43aa8b;
   color: #fff;
-  border: none;
-  border-radius: 6px;
+  text-decoration: none;
   padding: 12px 20px;
   font-size: 16px;
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 6px;
+  display: inline-block;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-#print-button:hover {
- background-color: #52b788; /* немного светлее основной */
+.pdf-download-button:hover {
+  background-color: #52b788;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 form {
   background-color: #ffffff;
