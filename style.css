@@ -625,7 +625,7 @@ margin-bottom: 600px;
   color: #666;
 }
 
-input[type="range"][name="stress_level"] {
+input[type="range"][name="Уровень стресса"] {
   -webkit-appearance: none;
   width: 100%;
   height: 16px;
@@ -691,7 +691,7 @@ input[type="range"] {
 
 /* Стили слайдера энергии */
 
-input[type="range"][name="energy_level"] {
+input[type="range"][name="Уровень энергии"] {
   -webkit-appearance: none;
   width: 100%;
   height: 16px;
@@ -702,7 +702,7 @@ input[type="range"][name="energy_level"] {
   margin-top: 12px;
 }
 
-input[type="range"][name="energy_level"] {
+input[type="range"][name="Уровень энергии"] {
   --range-fill: #f5c542; /* или #74c69d — можно подбирать динамически */
   background: linear-gradient(to right, var(--range-fill) 0%, #ccc 0%);
 }
@@ -729,7 +729,7 @@ input[type="range"][name="energy_level"] {
   color: #666;
 }
 
-input[type="range"][name="activity_level"] {
+input[type="range"][name="Уровень активности"] {
   -webkit-appearance: none;
   width: 100%;
   height: 16px;
@@ -740,7 +740,7 @@ input[type="range"][name="activity_level"] {
   margin-top: 12px;
 }
 
-input[type="range"][name="activity_level"]::-webkit-slider-thumb {
+input[type="range"][name="Уровень активности"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 28px;
   height: 28px;
