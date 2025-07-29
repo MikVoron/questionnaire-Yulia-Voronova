@@ -120,9 +120,6 @@ section {
     margin-bottom: 1em;
 }
 
-.custom-section {
-	margin-bottom: 80px ;
-}
 
 label {
   display: block;
@@ -547,6 +544,12 @@ textarea:hover {
 	margin-bottom: 100px;
 
 }
+
+/* .custom-radio-group-down {
+
+margin-bottom: 600px;
+
+} */
 
 /* Скрываем стандартный radio */
 .custom-radio input[type="radio"] {
