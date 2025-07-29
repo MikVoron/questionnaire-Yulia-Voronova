@@ -1,15 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // === Кнопка печати ===
-  const printButton = document.getElementById("print-button");
-  if (printButton) {
-    printButton.addEventListener("click", () => {
-      const printWindow = window.open("pdf-content.html", "_blank");
-      printWindow.onload = () => {
-        printWindow.focus();
-        printWindow.print();
-      };
-    });
-  }
+
 
   // === Общая функция обновления слайдера ===
   function initSlider(id, displayId, states) {
