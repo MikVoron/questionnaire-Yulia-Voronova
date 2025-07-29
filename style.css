@@ -120,11 +120,22 @@ section {
     margin-bottom: 1em;
 }
 
+.sectionq-energy {
+margin-top: 120px; /* отступ сверху для раздела энергии */
+}
+
+.sectionq-nutrition {
+	margin-top: 200px;
+}
 
 label {
   display: block;
   margin-bottom: 1.5em; /* Было возможно меньше, увеличиваем */
   cursor: pointer;
+}
+
+.label-sweets {
+	margin-top: 50px;
 }
 
 textarea {
