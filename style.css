@@ -56,17 +56,40 @@ button {
 }
 
 
+
+@keyframes gentlePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 12px #98c9a3; /* цвет рамки */
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .logo-container {
+  width: 180px;
+  margin: 0 auto;
   text-align: center;
-  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 12px;
+  animation: gentlePulse 3.5s ease-in-out infinite;
+  background-color: transparent;
 }
 
 .logo-container img {
-  max-width: 180px;
+  max-width: 100%;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
 }
+
 
 h1, h2 {
   font-size: 28px;
@@ -180,11 +203,7 @@ button[type="submit"]:hover {
     margin: 20px auto;
   }
 
-  .logo-container img {
-    max-width: 140px;
-  }
-
-  h1, h2 {
+    h1, h2 {
     font-size: 22px;
 
   }
@@ -759,12 +778,7 @@ input[type="range"][name="activity_level"]::-webkit-slider-thumb {
   border: none;
 }
 
-@keyframes drift {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-3px) rotate(1deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
 
-.logo-container img {
-  animation: drift 6s ease-in-out infinite;
-}
+
+
+
