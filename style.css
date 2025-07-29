@@ -152,6 +152,14 @@ textarea {
   padding-left: 28px; /* отступ слева для выравнивания с чекбоксами */
 }
 
+.highlighted {
+  background-color: #fff3cd;  /* Пастельно-жёлтый, выглядит как выделение */
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+
+
 
 .light-input {
   margin-bottom: 16px; /* регулируй по вкусу */
