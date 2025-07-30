@@ -42,11 +42,6 @@ body {
   }
 }
 
-button {
-  height: auto;
-  min-height: 48px;
-
-}
 
 .custom-checkbox,
 .custom-radio {
@@ -120,7 +115,7 @@ margin-top: 120px; /* отступ сверху для раздела энерг
 }
 
 .sectionq-nutrition {
-	margin-top: 200px;
+	margin-top: 220px;
 }
 
 label {
@@ -183,45 +178,43 @@ input[type="radio"] {
   margin-right: 8px;
 }
 
-button[type="submit"] {
-  background-color: #40916c;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 24px;
-   font-family: 'Lora', sans-serif;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+.main-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-.pdf-download-button {
-  background-color: #43aa8b;
-  color: #fff;
-  text-decoration: none;
   padding: 12px 24px;
-	font-family: 'Lora', sans-serif;
+  min-height: 48px;
+
+  font-family: 'Lora', sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #fff;
   border-radius: 6px;
-  display: inline-block;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
   cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
-button:hover {
-  background-color: #52b788; /* немного светлее основной */
+.submit-button {
+  background-color: #40916c;
+  border: none;
+}
+
+.download-button {
+  background-color: #43aa8b;
+  margin-left: 10px;
+}
+
+.main-button:hover {
+  background-color: #52b788;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-button[type="submit"]:hover {
-  background-color: #52b788; /* немного светлее основной */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
 
 @media screen and (max-width: 480px) {
   body {
@@ -239,13 +232,6 @@ h4 {
 
 font-size: 17 px;
 color: #2d6a4f;
-}
-
-
-.pdf-download-button:hover {
-  background-color: #52b788;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 form {
@@ -308,6 +294,18 @@ label {
   margin-bottom: 15px;
   font-weight: bold;
     padding-left: 28px;
+}
+
+.checkbox-note {
+ background-color: #f0fdf4;
+  color: #2d6a4f;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: 'Lora', sans-serif;
+  text-align: center;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
 .custom-checkbox input[type="checkbox"] {
