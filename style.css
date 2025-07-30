@@ -24,8 +24,6 @@ body {
   }
 }
 
-
-
 @media print {
   body {
     margin: 2cm;
@@ -54,8 +52,6 @@ button {
 .custom-radio {
   margin-bottom: 22px;
 }
-
-
 
 @keyframes gentlePulse {
   0% {
@@ -89,7 +85,6 @@ button {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   will-change: transform, box-shadow;
 }
-
 
 h1, h2 {
   font-size: 28px;
@@ -201,6 +196,20 @@ button[type="submit"] {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.pdf-download-button {
+  background-color: #43aa8b;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+	font-family: 'Lora', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
 button:hover {
   background-color: #52b788; /* немного светлее основной */
@@ -232,20 +241,6 @@ font-size: 17 px;
 color: #2d6a4f;
 }
 
-.pdf-download-button {
-  background-color: #43aa8b;
-  color: #fff;
-  text-decoration: none;
-  padding: 12px 20px;
-	font-family: 'Lora', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 6px;
-  display: inline-block;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
 
 .pdf-download-button:hover {
   background-color: #52b788;
@@ -630,10 +625,17 @@ margin-bottom: 600px;
 }
 
 .slider-hint {
-  margin-top: 6px;
-  font-size: 15px;
-  color: #666;
+  background-color: #f0fdf4;
+  color: #2d6a4f;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: 'Lora', sans-serif;
+  text-align: center;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
+
 
 input[type="range"][name="Уровень стресса"] {
   -webkit-appearance: none;
@@ -731,12 +733,6 @@ input[type="range"][name="Уровень энергии"] {
   font-weight: bold;
   font-size: 20px;
   color: #2d6a4f;
-}
-
-.activity-hint {
-  margin-top: 6px;
-  font-size: 15px;
-  color: #666;
 }
 
 input[type="range"][name="Уровень активности"] {
