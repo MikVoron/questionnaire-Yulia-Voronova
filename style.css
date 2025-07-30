@@ -194,6 +194,7 @@ button[type="submit"] {
   border: none;
   border-radius: 6px;
   padding: 12px 24px;
+   font-family: 'Lora', sans-serif;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -236,6 +237,7 @@ color: #2d6a4f;
   color: #fff;
   text-decoration: none;
   padding: 12px 20px;
+	font-family: 'Lora', sans-serif;
   font-size: 16px;
   font-weight: 500;
   border-radius: 6px;
@@ -782,5 +784,31 @@ input[type="range"][name="Уровень активности"]::-webkit-slider-
 
 .logo-link-youtube:hover img {
   box-shadow: 0 0 16px #74c69d;
+}
+
+.intro-card {
+  background-color: #fefcf8;
+  border: 2px solid #cce3d8;
+  border-radius: 16px;
+  padding: 30px 36px;
+  margin: auto 30px 1em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  max-width: 720px;
+  text-align: center;
+  font-family: 'Lora', serif;
+  line-height: 1.7;
+  color: #2d6a4f;
+}
+
+.intro-card .logo-container {
+  width: 160px;
+  margin: 0 auto 20px;
+  animation: gentlePulse 3.5s ease-in-out infinite;
+}
+
+.intro-card .logo-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
