@@ -143,11 +143,16 @@ textarea {
 }
 
 .highlighted {
-  background-color: #fff3cd;  /* Пастельно-жёлтый, выглядит как выделение */
+  background-color: #fff3cd;  /* Пастельно-жёлтый */
   padding: 2px 4px;
   border-radius: 3px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.intro-link:hover .highlighted {
+  background-color: #ffe8a0;  /* Чуть ярче при наведении */
+  transform: translateY(-1px); /* Лёгкое всплытие */
+}
 
 
 
@@ -808,12 +813,10 @@ input[type="range"][name="Уровень активности"]::-webkit-slider-
 .intro-link,
 .intro-link:visited {
   text-decoration: none;
-  color: #355d4d;
-  transition: color 0.3s ease, transform 0.3s ease;
+  color: #355d4d; /* ваш основной цвет */
+  transition: color 0.3s ease;
 }
 
 .intro-link:hover {
-  color: #228b22;      /* более яркий зелёный акцент */
-
-  transform: translateY(-1px);  /* лёгкий "всплывающий" эффект */
+  color: #228b22; /* зелёный акцент при наведении */
 }
