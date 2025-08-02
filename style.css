@@ -110,12 +110,9 @@ section {
     margin-bottom: 1em;
 }
 
-.sectionq-energy {
-margin-top: 120px; /* отступ сверху для раздела энергии */
-}
+.top {
 
-.sectionq-nutrition {
-	margin-top: 220px;
+	margin-top: 100px;
 }
 
 label {
@@ -125,7 +122,10 @@ label {
 }
 
 .label-sweets {
-	margin-top: 50px;
+	margin-top: 1.5em; /* отступ сверху для лучшего восприятия */
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  color: #2d6a4f;
 }
 
 textarea {
