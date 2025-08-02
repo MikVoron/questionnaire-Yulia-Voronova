@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("bg.jpg");
+  background-image: url("images/bg.jpg");
   background-repeat: repeat-y;
   background-size: 100% auto; /* растянуть по ширине, сохранить высоту */
   background-position: top center;
@@ -441,7 +441,7 @@ transform: translateY(-1px);
   width: 46px;
   height: 46px;
   transform: translate(-50%, -50%);
-  background: url("herb.svg") no-repeat center;
+  background: url("images/icons/herb.svg") no-repeat center;
   background-size: contain;
 }
 
@@ -453,7 +453,7 @@ transform: translateY(-1px);
   width: 36px;
   height: 36px;
   transform: translate(-50%, -50%);
-  background: url("cereal.svg") no-repeat center;
+  background: url("images/icons/cereal.svg") no-repeat center;
   background-size: contain;
 }
 
@@ -465,7 +465,7 @@ transform: translateY(-1px);
   width: 40px;
   height: 40px;
   transform: translate(-50%, -50%);
-  background: url("salad.svg") no-repeat center;
+  background: url("images/icons/salad.svg") no-repeat center;
   background-size: contain;
 }
 
@@ -477,7 +477,7 @@ transform: translateY(-1px);
   width: 38px;
   height: 38px;
   transform: translate(-50%, -50%);
-  background: url("checklis.svg") no-repeat center;
+  background: url("images/icons/checklist.svg") no-repeat center;
   background-size: contain;
 }
 
@@ -489,7 +489,7 @@ transform: translateY(-1px);
   width: 30px;
   height: 30px;
   transform: translate(-50%, -50%);
-  background: url("wish-list-checklist.svg") no-repeat center;
+  background: url("images/icons/wish-list-checklist.svg") no-repeat center;
   background-size: contain;
 }
 
@@ -501,7 +501,7 @@ transform: translateY(-1px);
   width: 30px;
   height: 30px;
   transform: translate(-50%, -50%);
-  background: url("sleeping.svg") no-repeat center;
+  background: url("images/icons/sleeping.svg") no-repeat center;
   background-size: contain;
 }
 
@@ -513,7 +513,7 @@ transform: translateY(-1px);
   width: 43px;
   height: 43px;
   transform: translate(-50%, -50%);
-  background: url("gardener-woman.svg") no-repeat center;
+  background: url("images/icons/gardener-woman.svg") no-repeat center;
   background-size: contain;
 }
 
@@ -525,7 +525,7 @@ transform: translateY(-1px);
   width: 36px;
   height: 36px;
   transform: translate(-50%, -50%);
-  background: url("community-comments.svg") no-repeat center;
+  background: url("images/icons/community-comments.svg") no-repeat center;
   background-size: contain;
 }
 
