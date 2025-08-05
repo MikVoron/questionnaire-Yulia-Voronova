@@ -48,6 +48,7 @@ body {
   margin-bottom: 22px;
 }
 
+
 @keyframes gentlePulse {
   0% {
     transform: scale(1);
@@ -130,6 +131,20 @@ label {
 
 textarea {
   margin-top: 12px; /* или 16px/20px — по вкусу */
+}
+
+.custom-textarea textarea {
+  width: 95%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  /* margin-bottom: 15px; */
+}
+
+.custom-textarea-down {
+	margin-bottom: 20px;
 }
 
 .label-title, .radio-title {
@@ -329,9 +344,13 @@ label {
   transition: all 0.3s ease;
 }
 
+
 .custom-checkbox:hover .checkmark {
   background-color: #eaf4ef;
+  border-color: #52b788;
+  box-shadow: 0 0 4px rgba(82, 183, 136, 0.6);
 }
+
 
 .custom-checkbox input:checked ~ .checkmark {
   background-color: #74c69d;
@@ -368,6 +387,10 @@ label {
   gap: 12px;
 }
 
+radiomark-up {
+	margin-top: 20px;
+}
+
 .custom-radio input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -386,9 +409,12 @@ label {
 
 }
 
+
 /* При наведении */
-.custom-radio:hover .radiomark {
+.custom-radio:hover .radiomark, label-title .custom-radio:hover .radiomark {
   background-color: #eaf4ef;
+  border-color: #52b788; /* насыщенный зелёный при ховере */
+  box-shadow: 0 0 4px rgba(82, 183, 136, 0.6); /* лёгкое свечение */
 }
 
 /* При выборе — показать внутреннюю точку */
