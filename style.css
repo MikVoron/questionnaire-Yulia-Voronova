@@ -846,3 +846,37 @@ input[type="range"][name="Уровень активности"]::-webkit-slider-
 .intro-link:hover {
   color: #228b22; /* зелёный акцент при наведении */
 }
+
+.final-section {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.end-page {
+  font-family: 'Lora', serif;
+  font-size: 24px;
+  color: #1b4332;
+  margin-bottom: 24px;
+}
+
+.final-contacts-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #1b4332;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
