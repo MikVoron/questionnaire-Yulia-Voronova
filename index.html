@@ -532,18 +532,21 @@
 				<h3 class="checkbox-title">👩‍⚕️ 7. Женское здоровье</h3>
 				<p class="checkbox-note">(блок анкеты, обязательный для женщин)</p>
 
-				<!-- Регулярность цикла -->
-				<label class="custom-radio radio-title">7.1 Регулярный ли у Вас цикл?</label>
-				<label class="custom-radio">
-					<input type="radio" name="Регулярный цикл" value="Да">
-					<span class="checkmark"></span>
-					Да
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="Регулярный цикл" value="Нет">
-					<span class="checkmark"></span>
-					Нет
-				</label>
+				<div class="radio-group">
+					<span class="radio-title">7.1 Регулярный ли у Вас цикл?</span>
+
+					<label class="custom-radio">
+						<input type="radio" name="Регулярный цикл" value="Да">
+						<span class="radiomark"></span>
+						Да
+					</label>
+
+					<label class="custom-radio">
+						<input type="radio" name="Регулярный цикл" value="Нет">
+						<span class="radiomark"></span>
+						Нет
+					</label>
+				</div>
 
 				<!-- Беременности / выкидыши / прерывания -->
 				<label class="custom-textarea">
@@ -557,31 +560,37 @@
 					<textarea name="Дети" placeholder="Пожалуйста, укажите количество детей"></textarea>
 				</label>
 
-				<!-- Болезненные менструации -->
-				<label class="custom-radio radio-title">7.4 Бывают ли у Вас болезненные менструации?</label>
-				<label class="custom-radio">
-					<input type="radio" name="Болезненные менструации" value="Да">
-					<span class="checkmark"></span>
-					Да
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="Болезненные менструации" value="Нет">
-					<span class="checkmark"></span>
-					Нет
-				</label>
+				<div class="radio-group">
+					<span class="radio-title">7.4 Бывают ли у Вас болезненные менструации?</span>
 
-				<!-- Нарушения цикла -->
-				<label class="custom-radio radio-title">7.5 Имеются ли у Вас нарушения менструального цикла?</label>
-				<label class="custom-radio">
-					<input type="radio" name="Нарушения менструального цикла" value="yes">
-					<span class="checkmark"></span>
-					Да
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="Нарушения менструального цикла" value="Нет">
-					<span class="checkmark"></span>
-					Нет
-				</label>
+					<label class="custom-radio">
+						<input type="radio" name="Болезненные менструации" value="Да">
+						<span class="radiomark"></span>
+						Да
+					</label>
+
+					<label class="custom-radio">
+						<input type="radio" name="Болезненные менструации" value="Нет">
+						<span class="radiomark"></span>
+						Нет
+					</label>
+				</div>
+
+				<div class="radio-group">
+					<span class="radio-title">7.5 Имеются ли у Вас нарушения менструального цикла?</span>
+
+					<label class="custom-radio">
+						<input type="radio" name="Нарушения менструального цикла" value="Да">
+						<span class="radiomark"></span>
+						Да
+					</label>
+
+					<label class="custom-radio">
+						<input type="radio" name="Нарушения менструального цикла" value="Нет">
+						<span class="radiomark"></span>
+						Нет
+					</label>
+				</div>
 
 				<!-- Диагнозы -->
 				<label class="custom-textarea">
@@ -603,7 +612,7 @@
 
 		</form>
 
-		<!-- <a href="pdf-content.html">ПДФ</a> -->
+		<a href="pdf-content.html">ПДФ</a>
 
 	</div>
 
