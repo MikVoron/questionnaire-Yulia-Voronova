@@ -20,7 +20,7 @@
 
 		<div class="intro-card">
 			<div class="logo-container">
-				<a class="logo-link-youtube" href="https://www.youtube.com/@voronova_nutrition">
+				<a class="logo-link-youtube" href="https://www.youtube.com/@">
 					<img src="images/logo.png" alt="Логотип нутрициолога" id="logo">
 				</a>
 			</div>
@@ -33,19 +33,19 @@
 				Чтобы она прошла максимально эффективно,<br>
 				заполните, пожалуйста, эту анкету.<br><br>
 
-				<strong>Для Вашего удобства Вы можете:</strong>
+				<!-- <strong>Для Вашего удобства Вы можете:</strong>
 				<br>💻 Заполнить анкету прямо здесь и нажать на кнопку <span class="highlighted">«Отправить анкету»</span><br><strong>или</strong>
 				<br> 💾 <a class="intro-link" href="Анкета клиента Yulia Voronova_1.pdf"">
 					<span class=" highlighted">«Скачать анкету»</span>
 				</a>
-				на свой компьютер, распечатать, заполнить вручную и прислать мне.
+				на свой компьютер, распечатать, заполнить вручную и прислать мне. -->
 
 		</div>
 
 		<form action="https://api.web3forms.com/submit" method="POST">
 			<input type="hidden" name="access_key" value="88b78c43-b948-4c57-bddc-5e15238da35c">
 			<input type="hidden" name="subject" value="Анкета клиента нутрициолога">
-			<input type="hidden" name="redirect" value="https://mikvoron.github.io/questionnaire-Yulia-Voronova/thankyou.html">
+			<input type="hidden" name="redirect" value="https://mikvoron.github.io/questionnaire-Yulia-Voronova/thanks.html">
 
 			<hr class="svg-divider svg-divider-information">
 
@@ -131,13 +131,13 @@
 					</div>
 				</div>
 
-				<div class="activity-slider">
+				<div class="slider-wrapper">
 					<label for="Уровень активности">🏃‍♂️ Насколько активный у Вас образ жизни?</label>
 					<div class="slider-hint">Двигайте ползунок и выберите Ваш вариант</div>
 
 					<input type="range" name="Уровень активности" id="Уровень активности" min="1" max="5" value="3" />
 
-					<div class="activity-value">
+					<div class="slider-value">
 						<span id="activityDisplay">3</span>
 					</div>
 				</div>
@@ -228,36 +228,10 @@
 			<hr class="svg-divider svg-divider-sleep">
 
 			<section>
-				<h3>🛌 4. Ваш сон и уровень стресса</h3>
-
-				<label>
-					<span class="label-title">4.1 Время отхода ко сну и время пробуждения:</span>
-					<input type="text" name="Время отхода ко сну и время пробуждения" placeholder="Например: ложусь в 23:00, просыпаюсь в 07:30">
-				</label>
-
-				<label>
-					<span class="label-title">4.2 Легко ли Вы засыпаете?</span>
-					<input type="text" name="Легко ли Вы засыпаете?" placeholder="Например: засыпаю быстро / долго ворочаюсь.../ долго читаю перед сном, чтобы уснуть...">
-				</label>
-
-				<div class="radio-group">
-					<span class="label-title">4.3 Вы просыпаетесь чаще всего...?</span>
-
-					<label class="custom-radio">
-						<input type="radio" name="Просыпается чаще всего" value="Просыпаюсь усталым">
-						<span class="radiomark"></span>
-						усталым 😫
-					</label>
-
-					<label class="custom-radio">
-						<input type="radio" name="Просыпается чаще всего" value="Просыпаюсь полным энергии">
-						<span class="radiomark"></span>
-						полным энергии ⚡
-					</label>
-				</div>
+				<h3>🛌 4. Ваш уровень стресса</h3>
 
 				<div class="slider-wrapper">
-					<label for="Уровень стресса">Уровень стресса</label>
+					<label for="Уровень стресса"></label>
 					<div class="slider-hint">Двигайте ползунок и выберете уровень <strong>ежедневного</strong> стресса в Вашей жизни на данный момент</div>
 
 					<input type="range" name="Уровень стресса" id="Уровень стресса" min="1" max="5" value="3" />
@@ -608,7 +582,7 @@
 			</section>
 
 			<button type="submit" class="main-button submit-button">Отправить анкету</button>
-			<a href="Анкета клиента Yulia Voronova_1.pdf" class="main-button download-button">Скачать анкету</a>
+			<!-- <a href="Анкета клиента Yulia Voronova_1.pdf" class="main-button download-button">Скачать анкету</a> -->
 
 		</form>
 

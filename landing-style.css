@@ -1,0 +1,84 @@
+/* landing-style.css — Стили для страницы навигации Юлии Вороновой */
+
+.landing-card {
+    /* Наследуем стиль .form-container из style.css */
+    max-width: 500px;
+    text-align: center;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.landing-title {
+    font-family: 'Lora', serif;
+    color: #2d6a4f; /* Цвет h1, h2 из основного CSS */
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.landing-subtitle {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #355d4d; /* Цвет .instructions из основного CSS */
+    margin-bottom: 35px;
+    font-style: italic;
+}
+
+.navigation-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Стилизация кнопок в стиле .main-button и .submit-button */
+.landing-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+    min-height: 52px;
+
+    /* Шрифты и цвета из вашего style.css */
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: normal;
+    text-decoration: none;
+
+    /* Основной зеленый цвет анкеты (#40916c) */
+    background-color: #40916c !important;
+    color: #ffffff !important;
+
+    border-radius: 8px;
+    border: none !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* Эффект при наведении как у кнопок в анкете */
+.landing-btn:hover {
+    background-color: #52b788 !important; /* Цвет .main-button:hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    color: #ffffff !important;
+}
+
+/* Анимация пульсации логотипа (использует gentlePulse из основного файла) */
+.landing-card .logo-container {
+    animation: gentlePulse 3.5s ease-in-out infinite;
+    width: 160px;
+    margin: 0 auto 10px;
+}
+
+/* Анимация появления всей карточки */
+.landing-card {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
