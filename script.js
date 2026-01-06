@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Автоматический редирект только для страницы "Спасибо"
 if (window.location.pathname.includes('thanks.html')) {
     setTimeout(function() {
-        // Замените ссылку ниже на ту, куда нужно отправить клиента
-        window.location.href = "https://github.com/MikVoron/questionnaire-Yulia-Voronova/index.html";
-    }, 5000); // 5000 миллисекунд = 5 секунд
+        // Используем относительный путь, чтобы он работал и на компьютере, и на хостинге
+        window.location.href = "index.html";
+    }, 5000);
 }
