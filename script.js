@@ -59,3 +59,4 @@ if (window.location.pathname.includes('thanks.html')) {
         window.location.href = "index.html";
     }, 5000);
 }
+
