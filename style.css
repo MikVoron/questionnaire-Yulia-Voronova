@@ -517,7 +517,7 @@ transform: translateY(-1px);
   background-size: contain;
 }
 
-.svg-divider-sleep::before {
+.svg-divider-stress::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -525,7 +525,7 @@ transform: translateY(-1px);
   width: 30px;
   height: 30px;
   transform: translate(-50%, -50%);
-  background: url("images/icons/sleeping.svg") no-repeat center;
+  background: url("images/icons/cereal.svg") no-repeat center;
   background-size: contain;
 }
 
