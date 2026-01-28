@@ -130,6 +130,20 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         animateOnScroll.observe(el);
     });
+
+    // Telegram chat animation - запуск при видимости секции
+    const tgChatSection = document.querySelector('.tg-chat-section');
+    if (tgChatSection) {
+        const tgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-visible');
+                    tgObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        tgObserver.observe(tgChatSection);
+    }
 });
 
 // Time slot selection

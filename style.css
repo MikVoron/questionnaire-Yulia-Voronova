@@ -625,13 +625,27 @@ body {
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: scale(0.95);
+    animation: heroImageFadeIn 1s ease forwards 0.3s;
+}
+
+@keyframes heroImageFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .hero-tag {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    background-color: var(--beige);
+    background-color: rgba(232, 220, 200, 0.85);
     padding: 15px 30px;
     font-size: 14px;
     letter-spacing: 1px;
@@ -688,6 +702,31 @@ body {
     font-size: 20px;
     margin-bottom: 30px;
     color: var(--dark-text);
+}
+
+/* Пульсация кнопок - легкое сердцебиение */
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(139, 166, 139, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(139, 166, 139, 0.4);
+    }
+}
+
+/* Применяем пульсацию только к кнопкам, не к обёрткам */
+a[class*="btn-"]:not(:hover):not([class*="wrap"]),
+button[class*="btn-"]:not(:hover),
+.tg-chat-btn:not(:hover),
+.youtube-subscribe-btn:not(:hover) {
+    animation: buttonPulse 2.5s ease-in-out infinite;
+}
+
+a[class*="btn-"]:hover,
+button[class*="btn-"]:hover,
+.tg-chat-btn:hover,
+.youtube-subscribe-btn:hover {
+    animation: none;
 }
 
 .btn-primary {
@@ -866,8 +905,9 @@ body {
     position: relative;
     background-image: url('images/new-habbits.webp');
     background-size: cover;
-    background-position: center 15%;
+    background-position: center center;
     background-repeat: no-repeat;
+
 }
 
 .grid-item.habits-card .grid-overlay.dark {
@@ -915,111 +955,100 @@ body {
 }
 
 .grid-item.first-card {
+    position: relative;
     background-color: #E8E3D5;
-    padding: 0;
-    perspective: 1000px;
-}
-    .about-hero-v4-bg.full-bg-hero {
-        position: relative;
-        width: 100vw;
-        min-height: 320px;
-        height: 50vh;
-        max-height: 480px;
-        background-image: url('images/about-me.png');
-        background-size: contain;
-        background-position: center center;
-        background-repeat: no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        overflow: hidden;
-    }
-.card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 4px;
+    overflow: hidden;
 }
 
-.card-front {
-    background-color: #E8E3D5;
+/* Контент первой карточки - заголовок сверху, фото по центру */
+.first-card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 30px;
+    padding: 25px 20px 20px;
+    z-index: 1;
+    transition: opacity 0.4s ease;
 }
 
-.card-back {
-    background-color: #8a9a8d;
-    transform: rotateY(180deg);
+.first-card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--dark-text);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.first-card-image {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    width: 100%;
 }
 
-.card-back-content p {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    color: var(--white);
-    text-align: center;
-    line-height: 1.6;
-}
-
-.grid-item.first-card .grid-overlay {
-    background: none;
-    position: static;
-    padding: 0;
-	margin-bottom: 10px;
-    color: var(--dark-text);
-    text-align: center;
-}
-
-.grid-item.first-card .grid-overlay h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 300;
-    font-size: 32px;
-    white-space: nowrap;
-}
-
-.grid-item.first-card .grid-overlay p {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.6;
-    opacity: 1;
-    max-height: none;
-}
-
-.grid-item.first-card img {
-    width: 60%;
+.first-card-image img {
+    width: 50%;
     height: auto;
     aspect-ratio: 3/4;
     object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 15px;
-    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.grid-item.first-card:hover img {
+/* Hover состояние */
+.first-card-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #6B7D7D;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 30px;
     opacity: 0;
-    max-height: 0;
-    margin-bottom: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
 }
 
-.grid-item.first-card:hover img {
-    transform: none;
+.first-card-hover p {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.6;
 }
 
-.grid-item.first-card .btn-link {
-    color: var(--dark-text);
+.grid-item.first-card:hover .first-card-content {
+    opacity: 0;
+}
+
+.grid-item.first-card:hover .first-card-hover {
+    opacity: 1;
+}
+
+.about-hero-v4-bg.full-bg-hero {
+    position: relative;
+    width: 100vw;
+    min-height: 320px;
+    height: 50vh;
+    max-height: 480px;
+    background-image: url('images/about-me.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
 }
 
 .grid-item img {
-    width: 100%;
-    height: 100%;
+
     object-fit: cover;
     transition: transform 0.5s;
 }
@@ -1105,9 +1134,13 @@ body {
     margin-top: auto;
 }
 
-/* Ничего лишнего - наверху (карточка без специального класса с иконкой goal) */
+/* Ничего лишнего - текст наверху */
+.grid-item:not(.first-card):not(.discuss-card):not(.scientific-card):not(.habits-card):not(:has(.progress-title)) .grid-overlay.dark {
+    justify-content: flex-start;
+}
+
 .grid-item:not(.first-card):not(.discuss-card):not(.scientific-card):not(.habits-card):not(:has(.progress-title)) .grid-overlay.dark h3 {
-    margin-bottom: auto;
+    margin-bottom: 15px;
 }
 
 .grid-overlay p {
@@ -1996,7 +2029,7 @@ body {
 }
 
 .first-meeting-v4 .step-content p {
-    font-size: 16px;
+    font-size: 18px;
     color: var(--dark-text);
     opacity: 0.85;
     line-height: 1.7;
@@ -2013,7 +2046,7 @@ body {
     border-radius: 50px;
     transition: all 0.3s ease;
     font-weight: 500;
-    border: 2px solid var(--sage-green);
+    border: 1px solid var(--beige);
 }
 
 .first-meeting-v4 .btn-soft:hover {
@@ -6214,16 +6247,18 @@ body {
 
 .help-numbered-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .help-numbered-card {
     position: relative;
-    background: linear-gradient(145deg, #f8faf8 0%, var(--white) 100%);
+    background: linear-gradient(145deg, #eef3ee 0%, #f5f8f5 100%);
     padding: 45px 22px 28px;
     border-radius: 16px;
-    border: 1px solid rgba(139, 166, 139, 0.2);
+    border: 1px solid rgba(139, 166, 139, 0.3);
     text-align: center;
     transition: all 0.4s ease;
     overflow: hidden;
@@ -6256,13 +6291,13 @@ body {
     right: 15px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 42px;
-    font-weight: 300;
-    color: rgba(139, 166, 139, 0.15);
+    font-weight: 500;
+    color: rgba(107, 125, 107, 0.35);
     line-height: 1;
 }
 
 .help-numbered-card:hover .help-number {
-    color: rgba(139, 166, 139, 0.3);
+    color: rgba(107, 125, 107, 0.5);
 }
 
 .help-numbered-card .help-card-icon {
@@ -6376,6 +6411,32 @@ body {
 .youtube-handle a:hover {
     background: var(--sage-green);
     color: white;
+}
+
+.youtube-subscribers-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--dark-text);
+    margin: 30px 0 35px;
+    letter-spacing: 0.5px;
+}
+
+.youtube-subscribers-badge::before {
+    content: '';
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--sage-green));
+}
+
+.youtube-subscribers-badge::after {
+    content: '';
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--sage-green), transparent);
 }
 
 .youtube-intro {
@@ -6716,16 +6777,20 @@ body {
     gap: 10px;
     opacity: 0;
     transform: translateY(20px);
+}
+
+/* Анимация запускается только когда секция видима */
+.tg-chat-section.animate-visible .tg-msg {
     animation: bubbleFadeIn 0.5s ease forwards;
 }
 
-.tg-msg:nth-child(1) { animation-delay: 0.3s; }
-.tg-msg:nth-child(2) { animation-delay: 0.6s; }
-.tg-msg:nth-child(3) { animation-delay: 0.9s; }
-.tg-msg:nth-child(4) { animation-delay: 1.2s; }
-.tg-msg:nth-child(5) { animation-delay: 1.5s; }
-.tg-msg:nth-child(6) { animation-delay: 1.8s; }
-.tg-msg:nth-child(7) { animation-delay: 2.1s; }
+.tg-chat-section.animate-visible .tg-msg:nth-child(1) { animation-delay: 0.3s; }
+.tg-chat-section.animate-visible .tg-msg:nth-child(2) { animation-delay: 0.6s; }
+.tg-chat-section.animate-visible .tg-msg:nth-child(3) { animation-delay: 0.9s; }
+.tg-chat-section.animate-visible .tg-msg:nth-child(4) { animation-delay: 1.2s; }
+.tg-chat-section.animate-visible .tg-msg:nth-child(5) { animation-delay: 1.5s; }
+.tg-chat-section.animate-visible .tg-msg:nth-child(6) { animation-delay: 1.8s; }
+.tg-chat-section.animate-visible .tg-msg:nth-child(7) { animation-delay: 2.1s; }
 
 .tg-msg.outgoing {
     align-self: flex-end;
@@ -6917,6 +6982,7 @@ body {
     color: var(--dark-text);
     margin-bottom: 20px;
     line-height: 1.3;
+    white-space: nowrap;
 }
 
 .about-cta-content p {
@@ -8048,9 +8114,9 @@ body {
 
 .submit-button {
     display: block;
-    width: auto;
+    width: 200px;
     max-width: 280px;
-    margin: 30px auto 0;
+    margin: 0 auto;
     background-color: var(--cream);
     color: var(--dark-text);
     border: 1px solid var(--beige);
