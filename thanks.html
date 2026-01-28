@@ -3,28 +3,29 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Спасибо!</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Спасибо! — Юлия Воронова</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="thanks-page">
-
-	<div class="form-container top">
-
-		<div class="logo-container">
-			<img src="images/YV.jpg" alt="Логотип">
-		</div>
-
-		<h1>Спасибо!</h1>
-
-		<p class="instructions">
-			<strong>Ваша анкета успешно отправлена 🎉🎉🎉</strong><br>
-			Я внимательно изучу ответы и свяжусь с вами в ближайшее время.<br><br>
-			Через несколько секунд вы будете перенаправлены на страницу с анкетами.
-			Если этого не произошло, <a href="index.html" style="color: #2d6a4f; font-weight: bold; text-decoration: underline;">нажмите здесь</a>.
+	<div class="thanks-card">
+		<svg class="checkmark-icon" viewBox="0 0 100 100">
+			<circle class="checkmark-circle" cx="50" cy="50" r="45"/>
+			<path class="checkmark-check" d="M30 50 L45 65 L70 35"/>
+		</svg>
+		<h1 class="thanks-title">Спасибо!</h1>
+		<p class="thanks-subtitle">Ваша анкета успешно отправлена</p>
+		<p class="thanks-text">
+			Я внимательно изучу ваши ответы и свяжусь с вами в ближайшее время.
 		</p>
-
+		<p class="thanks-redirect">
+			Через несколько секунд вы будете перенаправлены на страницу с анкетами.<br>
+			Если этого не произошло, <a href="questionnaires.html">нажмите здесь</a>.
+		</p>
 	</div>
 	<script src="script.js"></script>
 </body>

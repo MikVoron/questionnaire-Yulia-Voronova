@@ -1,0 +1,637 @@
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Active link highlighting based on scroll position
+function updateActiveLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav a, .footer-nav a');
+
+    let currentSection = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        // Не трогаем ссылки на другие страницы (без #) или с уже установленным active в HTML
+        if (!href.startsWith('#') && !href.includes('#')) {
+            return; // Пропускаем ссылки на другие страницы
+        }
+        // Для ссылок с якорями на другие страницы (например jana-morris-landing.html#home)
+        if (href.includes('.html#')) {
+            return; // Не трогаем их на других страницах
+        }
+        link.classList.remove('active');
+        if (href === '#' + currentSection) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Update active link on scroll
+window.addEventListener('scroll', updateActiveLink);
+
+// Update active link on page load
+document.addEventListener('DOMContentLoaded', updateActiveLink);
+
+// Testimonials navigation
+let currentTestimonial = 0;
+const testimonials = document.querySelectorAll('.testimonial-card');
+const prevBtn = document.querySelector('.nav-btn.prev');
+const nextBtn = document.querySelector('.nav-btn.next');
+
+if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        updateTestimonials();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        updateTestimonials();
+    });
+}
+
+function updateTestimonials() {
+    // This would implement carousel logic if needed
+    console.log('Current testimonial:', currentTestimonial);
+}
+
+// Newsletter form submission
+const newsletterForm = document.querySelector('.newsletter-form');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(newsletterForm);
+        alert('Thank you for subscribing!');
+        newsletterForm.reset();
+    });
+}
+
+// Animation on scroll - Combined observer for all elements
+document.addEventListener('DOMContentLoaded', () => {
+    const gridItems = document.querySelectorAll('.grid-item');
+
+    // Force hide all grid items first
+    gridItems.forEach(item => {
+        item.classList.add('hidden');
+    });
+
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const animateOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // For grid items - add animate class
+                if (entry.target.classList.contains('grid-item')) {
+                    entry.target.classList.add('animate');
+                    // Unobserve after animation to prevent re-triggering
+                    setTimeout(() => {
+                        animateOnScroll.unobserve(entry.target);
+                    }, 1000);
+                } else {
+                    // For other elements - fade in
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe grid items
+    gridItems.forEach(item => {
+        animateOnScroll.observe(item);
+    });
+
+    // Observe other elements for fade-in animation
+    document.querySelectorAll('.testimonial-card, .booking-info').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        animateOnScroll.observe(el);
+    });
+});
+
+// Time slot selection
+const timeSlots = document.querySelectorAll('.time-slot');
+timeSlots.forEach(slot => {
+    slot.addEventListener('click', () => {
+        timeSlots.forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+    });
+});
+
+// Header scroll effect
+let lastScroll = 0;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        header.style.transform = 'translateY(-100%)';
+    } else {
+        header.style.transform = 'translateY(0)';
+    }
+
+    lastScroll = currentScroll;
+});
+
+// Переключение вариантов First Meeting (для тестирования)
+// Раскомментируйте нужную секцию в HTML, убрав style="display: none;"
+// Варианты: .first-meeting-v1, .first-meeting-v2, .first-meeting-v3
+
+// Tariff card expand/collapse functionality (Variant 1)
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Tariff cards script loaded');
+
+    // Инициализация: присваиваем уникальные ID и ЯВНО закрываем все карточки
+    const allCards = document.querySelectorAll('.tariff-card-collapsible');
+    console.log('Found cards:', allCards.length);
+
+    allCards.forEach((card, index) => {
+        card.setAttribute('data-card-id', index);
+        card.classList.remove('is-open');
+        const details = card.querySelector('.tariff-details');
+        if (details) {
+            details.classList.remove('is-visible');
+        }
+    });
+
+    // Переменная для отслеживания открытой карточки
+    let currentlyOpenCardId = null;
+
+    // Функция переключения карточки
+    function toggleCard(clickedCard) {
+        if (!clickedCard) return;
+
+        const clickedCardId = clickedCard.getAttribute('data-card-id');
+        const clickedDetails = clickedCard.querySelector('.tariff-details');
+        const clickedBtn = clickedCard.querySelector('.expand-indicator-line');
+        const clickedLineText = clickedBtn ? clickedBtn.querySelector('.line-text') : null;
+
+        // Проверяем, является ли эта карточка уже открытой
+        const isThisCardOpen = (currentlyOpenCardId === clickedCardId);
+
+        // СНАЧАЛА закрываем ВСЕ карточки
+        document.querySelectorAll('.tariff-card-collapsible').forEach((card) => {
+            const details = card.querySelector('.tariff-details');
+            const btn = card.querySelector('.expand-indicator-line');
+            const lineText = btn ? btn.querySelector('.line-text') : null;
+
+            card.classList.remove('is-open');
+            if (details) {
+                details.classList.remove('is-visible');
+            }
+            if (btn) {
+                btn.classList.remove('expanded');
+            }
+            if (lineText) {
+                lineText.textContent = 'Подробнее';
+            }
+        });
+
+        // ПОТОМ, если нужно, открываем только нажатую карточку
+        if (!isThisCardOpen) {
+            clickedCard.classList.add('is-open');
+            if (clickedDetails) {
+                clickedDetails.classList.add('is-visible');
+            }
+            if (clickedBtn) {
+                clickedBtn.classList.add('expanded');
+            }
+            if (clickedLineText) {
+                clickedLineText.textContent = 'Свернуть';
+            }
+            currentlyOpenCardId = clickedCardId;
+        } else {
+            currentlyOpenCardId = null;
+        }
+    }
+
+    // Обработчик клика на всю карточку (кроме кнопки записаться)
+    allCards.forEach((card) => {
+        card.addEventListener('click', function(e) {
+            // Не срабатываем на кнопке "Записаться"
+            if (e.target.closest('.btn-tariff-fixed')) {
+                return;
+            }
+            toggleCard(this);
+        });
+    });
+});
+
+// Tabs functionality (Variant 5)
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const targetTab = this.getAttribute('data-tab');
+
+        // Remove active class from all buttons and panels
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+        // Add active class to clicked button and corresponding panel
+        this.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+    });
+});
+
+// Filter functionality (Variant 6)
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+
+        // Remove active class from all filter buttons
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter cards
+        document.querySelectorAll('.filter-card').forEach(card => {
+            const category = card.getAttribute('data-category');
+
+            if (filter === 'all') {
+                card.classList.remove('hidden');
+            } else if (category === filter) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+
+            // Закрываем все открытые вопросы
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+            });
+
+            // Открываем нажатый вопрос (если он был закрыт)
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+});
+
+// Diploma Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('diploma-modal');
+    const modalImg = document.getElementById('diploma-modal-image');
+    const closeBtn = document.querySelector('.diploma-modal-close');
+    const prevBtn = document.querySelector('.diploma-modal-prev');
+    const nextBtn = document.querySelector('.diploma-modal-next');
+    const diplomaCards = document.querySelectorAll('.diploma-card');
+
+    let currentDiplomaIndex = 0;
+    const diplomaImages = Array.from(diplomaCards).map(card => card.getAttribute('data-diploma'));
+
+    // Open modal when clicking on diploma card
+    diplomaCards.forEach((card, index) => {
+        card.addEventListener('click', function() {
+            currentDiplomaIndex = index;
+            openModal();
+        });
+    });
+
+    function openModal() {
+        modal.classList.add('active');
+        modalImg.src = diplomaImages[currentDiplomaIndex];
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showPrevDiploma() {
+        currentDiplomaIndex = (currentDiplomaIndex - 1 + diplomaImages.length) % diplomaImages.length;
+        modalImg.src = diplomaImages[currentDiplomaIndex];
+    }
+
+    function showNextDiploma() {
+        currentDiplomaIndex = (currentDiplomaIndex + 1) % diplomaImages.length;
+        modalImg.src = diplomaImages[currentDiplomaIndex];
+    }
+
+    // Close modal
+    closeBtn.addEventListener('click', closeModal);
+
+    // Click outside image to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Navigation buttons
+    prevBtn.addEventListener('click', showPrevDiploma);
+    nextBtn.addEventListener('click', showNextDiploma);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (!modal.classList.contains('active')) return;
+
+        if (e.key === 'Escape') {
+            closeModal();
+        } else if (e.key === 'ArrowLeft') {
+            showPrevDiploma();
+        } else if (e.key === 'ArrowRight') {
+            showNextDiploma();
+        }
+    });
+});
+
+// Testimonials Carousel functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.testimonials-carousel-track');
+    const prevBtn = document.querySelector('.carousel-btn-prev');
+    const nextBtn = document.querySelector('.carousel-btn-next');
+    const dotsContainer = document.querySelector('.carousel-dots');
+
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.social-testimonial-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    let cardsPerView = getCardsPerView();
+
+    function getCardsPerView() {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 768) return 2;
+        return 3;
+    }
+
+    // Create dots
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        const slidesCount = Math.ceil(totalCards / getCardsPerView());
+        for (let i = 0; i < slidesCount; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Перейти к слайду ${i + 1}`);
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 30; // gap from CSS
+        const offset = currentIndex * (cardWidth + gap) * cardsPerView;
+        track.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+
+        // Update button states
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) {
+            const maxIndex = Math.ceil(totalCards / cardsPerView) - 1;
+            nextBtn.disabled = currentIndex >= maxIndex;
+        }
+    }
+
+    function goToSlide(index) {
+        const maxIndex = Math.ceil(totalCards / cardsPerView) - 1;
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        updateCarousel();
+    }
+
+    function nextSlide() {
+        const maxIndex = Math.ceil(totalCards / cardsPerView) - 1;
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    }
+
+    function prevSlide() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    }
+
+    // Event listeners
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+
+    // Recalculate on resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const newCardsPerView = getCardsPerView();
+            if (newCardsPerView !== cardsPerView) {
+                cardsPerView = newCardsPerView;
+                currentIndex = 0;
+                createDots();
+            }
+            updateCarousel();
+        }, 150);
+    });
+
+    // Initialize
+    createDots();
+    updateCarousel();
+});
+
+// Testimonial Modal functionality with navigation
+document.addEventListener('DOMContentLoaded', function() {
+    const testimonialModal = document.getElementById('testimonial-modal');
+    const testimonialModalImg = document.getElementById('testimonial-modal-image');
+    const testimonialCloseBtn = document.querySelector('.testimonial-modal-close');
+    const testimonialPrevBtn = document.querySelector('.testimonial-modal-prev');
+    const testimonialNextBtn = document.querySelector('.testimonial-modal-next');
+    const testimonialCards = document.querySelectorAll('.social-testimonial-card');
+
+    // Info card elements
+    const infoName = document.getElementById('testimonial-info-name');
+    const infoAge = document.getElementById('testimonial-info-age');
+    const infoRequest = document.getElementById('testimonial-info-request');
+
+    if (!testimonialModal || !testimonialModalImg) return;
+
+    let currentTestimonialIndex = 0;
+    const testimonialData = Array.from(testimonialCards).map(card => ({
+        image: card.getAttribute('data-testimonial'),
+        name: card.getAttribute('data-name') || '',
+        age: card.getAttribute('data-age') || '',
+        request: card.getAttribute('data-request') || ''
+    }));
+
+    // Update modal content based on current index
+    function updateModalContent() {
+        const data = testimonialData[currentTestimonialIndex];
+        if (data) {
+            testimonialModalImg.src = data.image;
+            if (infoName) infoName.textContent = data.name;
+            if (infoAge) infoAge.textContent = data.age;
+            if (infoRequest) infoRequest.textContent = data.request;
+        }
+    }
+
+    // Open modal when clicking on testimonial card
+    testimonialCards.forEach((card, index) => {
+        card.addEventListener('click', function() {
+            currentTestimonialIndex = index;
+            updateModalContent();
+            testimonialModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Navigation functions
+    function showPrevTestimonial() {
+        currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialData.length) % testimonialData.length;
+        updateModalContent();
+    }
+
+    function showNextTestimonial() {
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialData.length;
+        updateModalContent();
+    }
+
+    function closeTestimonialModal() {
+        testimonialModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Navigation button events
+    if (testimonialPrevBtn) {
+        testimonialPrevBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showPrevTestimonial();
+        });
+    }
+
+    if (testimonialNextBtn) {
+        testimonialNextBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showNextTestimonial();
+        });
+    }
+
+    // Close modal on X button
+    if (testimonialCloseBtn) {
+        testimonialCloseBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeTestimonialModal();
+        });
+    }
+
+    // Close modal on click anywhere (background, image, etc.)
+    testimonialModal.addEventListener('click', function(e) {
+        // Close if clicking on the modal background or the image
+        if (e.target === testimonialModal || e.target === testimonialModalImg) {
+            closeTestimonialModal();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (!testimonialModal.classList.contains('active')) return;
+
+        if (e.key === 'Escape') {
+            closeTestimonialModal();
+        } else if (e.key === 'ArrowLeft') {
+            showPrevTestimonial();
+        } else if (e.key === 'ArrowRight') {
+            showNextTestimonial();
+        }
+    });
+});
+
+// Privacy checkbox validation with tooltip
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('.contact-email-form');
+    if (!contactForm) return;
+
+    const privacyCheckbox = contactForm.querySelector('input[name="privacy"]');
+    const tooltip = contactForm.querySelector('.privacy-tooltip');
+
+    if (!privacyCheckbox || !tooltip) return;
+
+    contactForm.addEventListener('submit', function(e) {
+        if (!privacyCheckbox.checked) {
+            e.preventDefault();
+            tooltip.classList.add('show');
+
+            // Скрыть подсказку через 3 секунды
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+            }, 3000);
+        }
+    });
+
+    // Скрыть подсказку при клике на чекбокс
+    privacyCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            tooltip.classList.remove('show');
+        }
+    });
+});
