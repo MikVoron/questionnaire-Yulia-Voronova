@@ -16,16 +16,20 @@
 	<header class="header">
 		<div class="container">
 			<div class="header-content">
-				<div class="logo">
-					<img src="images/icons/LOGO.jpg" alt="Logo" class="logo-img">
+				<a href="index.html" class="logo">
+					<img src="images/icons/logo.png" alt="Logo" class="logo-img">
 					<span>ЮЛИЯ ВОРОНОВА</span>
-				</div>
+				</a>
 				<button class="burger-menu" aria-label="Меню">
 					<span></span>
 					<span></span>
 					<span></span>
 				</button>
 				<nav class="nav">
+					<button class="nav-close" aria-label="Закрыть меню">
+						<span></span>
+						<span></span>
+					</button>
 					<a href="#home">Главная</a>
 					<a href="about.html">Обо мне</a>
 					<a href="#tariffs">Тарифы</a>
@@ -42,7 +46,7 @@
 		<div class="container">
 			<div class="hero-content">
 				<div class="hero-image hero-image-variants">
-					<img src="images/YV5.png" alt="Yulia Voronova">
+					<img src="images/YV-big.webp" alt="Yulia Voronova">
 					<div class="hero-tag">
 						<span class="script-text"></span>
 						Юлия Воронова, <br>
@@ -89,7 +93,7 @@
 					<div class="first-card-content">
 						<h3>Как я работаю</h3>
 						<div class="first-card-image">
-							<img src="images/2.png" alt="Nutritionist Coach">
+							<img src="images/YV-small.webp" alt="Nutritionist Coach">
 						</div>
 					</div>
 					<div class="first-card-hover">
@@ -198,108 +202,120 @@
 			<h2 class="section-title script-text">Выберите свой комфортный темп</h2>
 			<p class="tariffs-subtitle">До консультации я попрошу вас заполнить небольшую анкету.</p>
 
-			<div class="tariffs-grid">
-				<!-- Тариф 1: Разовая консультация -->
-				<div class="tariff-card-collapsible">
-					<div class="tariff-card-preview">
-						<div class="tariff-header-compact">
-							<h3 class="tariff-name-compact">РАЗОВАЯ КОНСУЛЬТАЦИЯ</h3>
-							<p class="tariff-subtitle-compact">Первые шаги</p>
-							<p class="tariff-duration-compact">Формат: онлайн<br>
-								Одна встреча 60-90 минут</p>
+			<div class="tariffs-carousel-wrapper">
+				<button class="tariffs-arrow tariffs-arrow-left" aria-label="Предыдущий тариф">
+					<svg viewBox="0 0 24 24" fill="currentColor">
+						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+					</svg>
+				</button>
+				<div class="tariffs-grid">
+					<!-- Тариф 1: Разовая консультация -->
+					<div class="tariff-card-collapsible">
+						<div class="tariff-card-preview">
+							<div class="tariff-header-compact">
+								<h3 class="tariff-name-compact">РАЗОВАЯ КОНСУЛЬТАЦИЯ</h3>
+								<p class="tariff-subtitle-compact">Первые шаги</p>
+								<p class="tariff-duration-compact">Формат: онлайн<br>
+									Одна встреча 60-90 минут</p>
+							</div>
+							<div class="tariff-price-compact">
+								<span class="price-amount-compact">3 000</span>
+								<span class="price-currency-compact">₽</span>
+							</div>
+							<button class="expand-indicator-line">
+								<span class="line-text">Подробнее</span>
+							</button>
 						</div>
-						<div class="tariff-price-compact">
-							<span class="price-amount-compact">3 000</span>
-							<span class="price-currency-compact">₽</span>
-						</div>
-						<button class="expand-indicator-line">
-							<span class="line-text">Подробнее</span>
-						</button>
-					</div>
-					<div class="tariff-details">
-						<div class="tariff-description">
+						<div class="tariff-details">
+							<div class="tariff-description">
 
+							</div>
+							<h4 class="features-title">Что вы получите</h4>
+							<ul class="tariff-features">
+								<li>Найдем связь между вашим рационом, образом жизни и симптомами</li>
+								<li>Проанализируем анкету и дневник питания за 3-5 дней</li>
+								<li>Разберем уже имеющиеся анализы или составим список рекомендуемых</li>
+								<li>Поддержка в чате в течение недели</li>
+								<li>Письменные индивидуальные рекомендации - чёткий план по питанию и образу жизни</li>
+							</ul>
 						</div>
-						<h4 class="features-title">Что вы получите</h4>
-						<ul class="tariff-features">
-							<li>Найдем связь между вашим рационом, образом жизни и симптомами</li>
-							<li>Проанализируем анкету и дневник питания за 3-5 дней</li>
-							<li>Разберем уже имеющиеся анализы или составим список рекомендуемых</li>
-							<li>Поддержка в чате в течение недели</li>
-							<li>Письменные индивидуальные рекомендации - чёткий план по питанию и образу жизни</li>
-						</ul>
+						<a href="https://t.me/YuliaVoronova78" class="btn-tariff-fixed">Записаться на консультацию</a>
 					</div>
-					<a href="https://t.me/YuliaVoronova78" class="btn-tariff-fixed">Записаться на консультацию</a>
-				</div>
 
-				<!-- Тариф 2: Консультация 1+1 (популярный) -->
-				<div class="tariff-card-collapsible popular">
-					<span class="popular-badge">Оптимальный выбор</span>
-					<div class="tariff-card-preview">
-						<div class="tariff-header-compact">
-							<h3 class="tariff-name-compact">КОНСУЛЬТАЦИЯ 1+1</h3>
-							<p class="tariff-subtitle-compact">Оптимальный выбор</p>
-							<p class="tariff-duration-compact">Формат: онлайн<br>
-								Две встречи по 60-90 минут</p>
+					<!-- Тариф 2: Консультация 1+1 (популярный) -->
+					<div class="tariff-card-collapsible popular">
+						<span class="popular-badge">Оптимальный выбор</span>
+						<div class="tariff-card-preview">
+							<div class="tariff-header-compact">
+								<h3 class="tariff-name-compact">КОНСУЛЬТАЦИЯ 1+1</h3>
+								<p class="tariff-subtitle-compact">Оптимальный выбор</p>
+								<p class="tariff-duration-compact">Формат: онлайн<br>
+									Две встречи по 60-90 минут</p>
+							</div>
+							<div class="tariff-price-compact">
+								<span class="price-amount-compact">6 000</span>
+								<span class="price-currency-compact">₽</span>
+							</div>
+							<button class="expand-indicator-line">
+								<span class="line-text">Подробнее</span>
+							</button>
 						</div>
-						<div class="tariff-price-compact">
-							<span class="price-amount-compact">6 000</span>
-							<span class="price-currency-compact">₽</span>
+						<div class="tariff-details">
+							<h4 class="features-title">Первая встреча:</h4>
+							<ul class="tariff-features">
+								<li>Найдем связь между вашим рационом, образом жизни и симптомами</li>
+								<li>Проанализируем анкету и дневник питания за 3-5 дней</li>
+								<li>Разберем уже имеющиеся анализы и составим список рекомендуемых</li>
+								<li>Поддержка в чате в течение недели</li>
+								<li>Письменные индивидуальные рекомендации</li>
+							</ul>
+							<h4 class="features-title">Вторая встреча через 4-6 недель:</h4>
+							<ul class="tariff-features">
+								<li>Оценим перемены в самочувствии и результаты повторных анализов</li>
+								<li>Скорректируем наши шаги и составим новые рекомендации</li>
+								<li><strong>БОНУС!</strong> Сборник моих собственных рецептов в подарок!</li>
+							</ul>
 						</div>
-						<button class="expand-indicator-line">
-							<span class="line-text">Подробнее</span>
-						</button>
+						<a href="https://t.me/YuliaVoronova78" class="btn-tariff-fixed">Записаться на консультацию</a>
 					</div>
-					<div class="tariff-details">
-						<h4 class="features-title">Первая встреча:</h4>
-						<ul class="tariff-features">
-							<li>Найдем связь между вашим рационом, образом жизни и симптомами</li>
-							<li>Проанализируем анкету и дневник питания за 3-5 дней</li>
-							<li>Разберем уже имеющиеся анализы и составим список рекомендуемых</li>
-							<li>Поддержка в чате в течение недели</li>
-							<li>Письменные индивидуальные рекомендации</li>
-						</ul>
-						<h4 class="features-title">Вторая встреча через 4-6 недель:</h4>
-						<ul class="tariff-features">
-							<li>Оценим перемены в самочувствии и результаты повторных анализов</li>
-							<li>Скорректируем наши шаги и составим новые рекомендации</li>
-							<li><strong>БОНУС!</strong> Сборник моих собственных рецептов в подарок!</li>
-						</ul>
-					</div>
-					<a href="https://t.me/YuliaVoronova78" class="btn-tariff-fixed">Записаться на консультацию</a>
-				</div>
 
-				<!-- Тариф 3: За руку -->
-				<div class="tariff-card-collapsible">
-					<div class="tariff-card-preview">
-						<div class="tariff-header-compact">
-							<h3 class="tariff-name-compact">ЗА РУКУ</h3>
-							<p class="tariff-subtitle-compact">Устойчивые перемены</p>
-							<p class="tariff-duration-compact">Формат: онлайн <br>
-								Один месяц (возможно продление)</p>
+					<!-- Тариф 3: За руку -->
+					<div class="tariff-card-collapsible">
+						<div class="tariff-card-preview">
+							<div class="tariff-header-compact">
+								<h3 class="tariff-name-compact">ЗА РУКУ</h3>
+								<p class="tariff-subtitle-compact">Устойчивые перемены</p>
+								<p class="tariff-duration-compact">Формат: онлайн <br>
+									Один месяц (возможно продление)</p>
+							</div>
+							<div class="tariff-price-compact">
+								<span class="price-amount-compact">12 000</span>
+								<span class="price-currency-compact">₽</span>
+							</div>
+							<button class="expand-indicator-line">
+								<span class="line-text">Подробнее</span>
+							</button>
 						</div>
-						<div class="tariff-price-compact">
-							<span class="price-amount-compact">12 000</span>
-							<span class="price-currency-compact">₽</span>
+						<div class="tariff-details">
+							<h4 class="features-title">Что вы получите:</h4>
+							<ul class="tariff-features">
+								<li>Четыре онлайн-встречи (1 раз в неделю, продолжительность 30-60 минут)</li>
+								<li>Детальный разбор вашего состояния: от анализов до персонального рациона</li>
+								<li>Личное сопровождение: я на связи в рабочее время</li>
+								<li>Гибкий подход: корректируем план питания, если это необходимо</li>
+								<li>Живой формат: ваше самочувствие и удобство - главный приоритет</li>
+								<li>Письменные индивидуальные рекомендации</li>
+								<li><strong>БОНУС!</strong> Сборник моих собственных рецептов в подарок!</li>
+							</ul>
 						</div>
-						<button class="expand-indicator-line">
-							<span class="line-text">Подробнее</span>
-						</button>
+						<a href="https://t.me/YuliaVoronova78" class="btn-tariff-fixed">Записаться на консультацию</a>
 					</div>
-					<div class="tariff-details">
-						<h4 class="features-title">Что вы получите:</h4>
-						<ul class="tariff-features">
-							<li>Четыре онлайн-встречи (1 раз в неделю, продолжительность 30-60 минут)</li>
-							<li>Детальный разбор вашего состояния: от анализов до персонального рациона</li>
-							<li>Личное сопровождение: я на связи в рабочее время</li>
-							<li>Гибкий подход: корректируем план питания, если это необходимо</li>
-							<li>Живой формат: ваше самочувствие и удобство - главный приоритет</li>
-							<li>Письменные индивидуальные рекомендации</li>
-							<li><strong>БОНУС!</strong> Сборник моих собственных рецептов в подарок!</li>
-						</ul>
-					</div>
-					<a href="https://t.me/YuliaVoronova78" class="btn-tariff-fixed">Записаться на консультацию</a>
 				</div>
+				<button class="tariffs-arrow tariffs-arrow-right" aria-label="Следующий тариф">
+					<svg viewBox="0 0 24 24" fill="currentColor">
+						<path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+					</svg>
+				</button>
 			</div>
 		</div>
 	</section>
@@ -684,10 +700,10 @@
 			<div class="footer-content">
 				<!-- Левая часть: Логотип как в хедере -->
 				<div class="footer-left">
-					<div class="logo">
-						<img src="images/logo.png" alt="Logo" class="logo-img">
+					<a href="index.html" class="logo">
+						<img src="images/icons/logo.png"" alt=" Logo" class="logo-img">
 						<span>ЮЛИЯ ВОРОНОВА</span>
-					</div>
+					</a>
 				</div>
 
 				<!-- Центр: Навигация в два ряда -->

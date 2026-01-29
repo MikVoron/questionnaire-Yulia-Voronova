@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const burgerMenu = document.querySelector('.burger-menu');
     const nav = document.querySelector('.nav');
+    const navClose = document.querySelector('.nav-close');
     const body = document.body;
 
     if (burgerMenu && nav) {
@@ -10,6 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.className = 'nav-overlay';
         document.body.appendChild(overlay);
 
+        // Функция закрытия меню
+        const closeMenu = () => {
+            burgerMenu.classList.remove('active');
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = '';
+        };
+
+        // Открыть меню
         burgerMenu.addEventListener('click', () => {
             burgerMenu.classList.toggle('active');
             nav.classList.toggle('active');
@@ -17,22 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
             body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         });
 
+        // Закрыть по кнопке X
+        if (navClose) {
+            navClose.addEventListener('click', closeMenu);
+        }
+
         // Close menu on overlay click
-        overlay.addEventListener('click', () => {
-            burgerMenu.classList.remove('active');
-            nav.classList.remove('active');
-            overlay.classList.remove('active');
-            body.style.overflow = '';
-        });
+        overlay.addEventListener('click', closeMenu);
 
         // Close menu on nav link click
         nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                burgerMenu.classList.remove('active');
-                nav.classList.remove('active');
-                overlay.classList.remove('active');
-                body.style.overflow = '';
-            });
+            link.addEventListener('click', closeMenu);
         });
     }
 });
@@ -49,6 +54,283 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// Tariffs carousel - scroll to middle card (КОНСУЛЬТАЦИЯ 1+1) on mobile
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 768) {
+        const tariffsGrid = document.querySelector('.tariffs-grid');
+        const popularCard = document.querySelector('.tariff-card-collapsible.popular');
+        const allCards = document.querySelectorAll('.tariff-card-collapsible');
+
+        if (tariffsGrid && popularCard) {
+            // Добавляем класс active к центральной карточке
+            allCards.forEach(card => card.classList.remove('active'));
+            popularCard.classList.add('active');
+
+            setTimeout(() => {
+                const scrollPosition = popularCard.offsetLeft - (tariffsGrid.offsetWidth - popularCard.offsetWidth) / 2;
+                tariffsGrid.scrollLeft = scrollPosition;
+            }, 100);
+        }
+    }
+});
+
+// Tariffs carousel arrows
+document.addEventListener('DOMContentLoaded', () => {
+    const tariffsGrid = document.querySelector('.tariffs-grid');
+    const leftArrow = document.querySelector('.tariffs-arrow-left');
+    const rightArrow = document.querySelector('.tariffs-arrow-right');
+
+    if (tariffsGrid && leftArrow && rightArrow) {
+        const cards = tariffsGrid.querySelectorAll('.tariff-card-collapsible');
+        let currentIndex = 1; // Начинаем со средней карточки
+        let isScrolling = false;
+
+        // Функция центрирования карточки по индексу
+        const scrollToCard = (index) => {
+            if (index < 0) index = 0;
+            if (index >= cards.length) index = cards.length - 1;
+
+            currentIndex = index;
+            const card = cards[index];
+
+            // Вычисляем позицию для центрирования
+            const gridRect = tariffsGrid.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
+            const currentScroll = tariffsGrid.scrollLeft;
+
+            // Позиция карточки относительно контейнера + текущий scroll
+            const cardLeftInGrid = card.offsetLeft;
+            const cardWidth = card.offsetWidth;
+            const gridWidth = tariffsGrid.offsetWidth;
+
+            // Целевая позиция scroll чтобы карточка была по центру
+            const targetScroll = cardLeftInGrid - (gridWidth - cardWidth) / 2;
+
+            // Устанавливаем активную карточку сразу
+            cards.forEach((c, i) => {
+                if (i === index) {
+                    c.classList.add('active');
+                } else {
+                    c.classList.remove('active');
+                }
+            });
+
+            tariffsGrid.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
+
+            updateArrowsStateByIndex(index);
+        };
+
+        // Функция определения текущей карточки
+        const getCurrentCardIndex = () => {
+            const gridWidth = tariffsGrid.offsetWidth;
+            const scrollLeft = tariffsGrid.scrollLeft;
+            const centerPoint = scrollLeft + gridWidth / 2;
+
+            let closestIndex = 0;
+            let closestDistance = Infinity;
+
+            cards.forEach((card, index) => {
+                const cardLeft = card.offsetLeft;
+                const cardWidth = card.offsetWidth;
+                const cardCenter = cardLeft + cardWidth / 2;
+                const distance = Math.abs(cardCenter - centerPoint);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            return closestIndex;
+        };
+
+        // Функция обновления активной карточки (blur эффект)
+        const updateActiveCard = () => {
+            const index = getCurrentCardIndex();
+            currentIndex = index;
+            cards.forEach((card, i) => {
+                if (i === index) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        };
+
+        // Функция обновления состояния стрелок по индексу
+        const updateArrowsStateByIndex = (index) => {
+            if (index <= 0) {
+                leftArrow.classList.add('disabled');
+            } else {
+                leftArrow.classList.remove('disabled');
+            }
+
+            if (index >= cards.length - 1) {
+                rightArrow.classList.add('disabled');
+            } else {
+                rightArrow.classList.remove('disabled');
+            }
+        };
+
+        // Функция обновления состояния стрелок
+        const updateArrowsState = () => {
+            const index = getCurrentCardIndex();
+            updateArrowsStateByIndex(index);
+            updateActiveCard();
+        };
+
+        // Начальное состояние
+        setTimeout(() => {
+            updateArrowsState();
+        }, 150);
+
+        // Debounce для scroll
+        let scrollTimeout;
+        tariffsGrid.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                updateArrowsState();
+            }, 100);
+        });
+
+        leftArrow.addEventListener('click', () => {
+            if (!leftArrow.classList.contains('disabled')) {
+                scrollToCard(currentIndex - 1);
+            }
+        });
+
+        rightArrow.addEventListener('click', () => {
+            if (!rightArrow.classList.contains('disabled')) {
+                scrollToCard(currentIndex + 1);
+            }
+        });
+    }
+});
+
+// Diplomas Carousel
+document.addEventListener('DOMContentLoaded', () => {
+    const diplomasGrid = document.querySelector('.diplomas-grid');
+    const leftArrow = document.querySelector('.diplomas-arrow-left');
+    const rightArrow = document.querySelector('.diplomas-arrow-right');
+
+    if (diplomasGrid && leftArrow && rightArrow) {
+        const cards = diplomasGrid.querySelectorAll('.diploma-card');
+        let currentIndex = 0;
+
+        const scrollToCard = (index) => {
+            if (index < 0) index = 0;
+            if (index >= cards.length) index = cards.length - 1;
+            currentIndex = index;
+
+            const card = cards[index];
+            const cardLeftInGrid = card.offsetLeft;
+            const cardWidth = card.offsetWidth;
+            const gridWidth = diplomasGrid.offsetWidth;
+            const targetScroll = cardLeftInGrid - (gridWidth - cardWidth) / 2;
+
+            cards.forEach((c, i) => {
+                if (i === index) {
+                    c.classList.add('active');
+                } else {
+                    c.classList.remove('active');
+                }
+            });
+
+            diplomasGrid.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
+
+            updateArrowsState(index);
+        };
+
+        const updateArrowsState = (index) => {
+            leftArrow.classList.toggle('disabled', index === 0);
+            rightArrow.classList.toggle('disabled', index === cards.length - 1);
+        };
+
+        // Инициализация - вторая карточка активна и центрирована
+        if (cards.length > 1) {
+            currentIndex = 1;
+            cards[1].classList.add('active');
+            updateArrowsState(1);
+            // Центрируем вторую карточку после загрузки
+            setTimeout(() => {
+                scrollToCard(1);
+            }, 100);
+        }
+
+        leftArrow.addEventListener('click', () => {
+            if (!leftArrow.classList.contains('disabled')) {
+                scrollToCard(currentIndex - 1);
+            }
+        });
+
+        rightArrow.addEventListener('click', () => {
+            if (!rightArrow.classList.contains('disabled')) {
+                scrollToCard(currentIndex + 1);
+            }
+        });
+
+        // Обновление при скролле
+        let scrollTimeout;
+        diplomasGrid.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const gridWidth = diplomasGrid.offsetWidth;
+                const scrollLeft = diplomasGrid.scrollLeft;
+                const centerPoint = scrollLeft + gridWidth / 2;
+
+                let closestIndex = 0;
+                let closestDistance = Infinity;
+
+                cards.forEach((card, index) => {
+                    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+                    const distance = Math.abs(centerPoint - cardCenter);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestIndex = index;
+                    }
+                });
+
+                if (closestIndex !== currentIndex) {
+                    currentIndex = closestIndex;
+                    cards.forEach((c, i) => {
+                        c.classList.toggle('active', i === currentIndex);
+                    });
+                    updateArrowsState(currentIndex);
+                }
+            }, 100);
+        });
+    }
+});
+
+// Animate elements on scroll (Intersection Observer)
+document.addEventListener('DOMContentLoaded', () => {
+    const stepItems = document.querySelectorAll('.first-meeting-v4 .step-item');
+
+    if (stepItems.length > 0 && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        stepItems.forEach(item => {
+            observer.observe(item);
+        });
+    }
 });
 
 // Active link highlighting based on scroll position
