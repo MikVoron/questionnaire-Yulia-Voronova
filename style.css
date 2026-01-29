@@ -1620,14 +1620,7 @@ button[class*="btn-"]:hover,
 }
 
 @media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .nav {
-        gap: 20px;
-    }
+    /* Header styles moved to responsive section at end of file */
 
     .grid {
         grid-template-columns: 1fr;
@@ -8684,6 +8677,556 @@ button[class*="btn-"]:hover,
 @media (max-width: 600px) {
     .contact-options {
         max-width: 100%;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Burger Menu */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.burger-menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ========================================
+   TABLET (768px - 1024px)
+   ======================================== */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    /* Hero */
+    .hero-content {
+        grid-template-columns: 350px 1fr;
+        gap: 50px;
+    }
+
+    .hero-image img {
+        height: 420px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    /* Services Grid */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-item.first-card {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    /* Services Range */
+    .services-columns {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .services-columns .service-column:last-child {
+        grid-column: span 2;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* First Meeting */
+    .meeting-steps {
+        gap: 20px;
+    }
+
+    /* Tariffs */
+    .tariffs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    /* Testimonials */
+    .testimonials-track {
+        gap: 20px;
+    }
+
+    /* About page */
+    .minimal-images-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Help cards */
+    .help-numbered-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========================================
+   MOBILE (< 768px)
+   ======================================== */
+@media (max-width: 768px) {
+    /* Burger Menu показываем */
+    .burger-menu {
+        display: flex;
+    }
+
+    /* Header */
+    .header-content {
+        position: relative;
+    }
+
+    /* Navigation */
+    .nav {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--dark-sage);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav.active {
+        right: 0;
+    }
+
+    .nav a {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+    /* Overlay */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .nav-overlay.active {
+        display: block;
+    }
+
+    /* Container */
+    .container {
+        padding: 0 20px;
+    }
+
+    .container-wide {
+        padding: 0 15px;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 60px 0 40px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: -1;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .hero-image img {
+        height: 350px;
+    }
+
+    .hero-tag {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 15px;
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+
+    .hero-title {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+
+    .hero-cta {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    /* Mission */
+    .mission-text {
+        font-size: 28px;
+    }
+
+    /* About section */
+    .about-text {
+        font-size: 14px;
+    }
+
+    /* Services Grid */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .grid-item {
+        min-height: 280px;
+    }
+
+    .first-card-content h3 {
+        font-size: 24px;
+    }
+
+    .first-card-image img {
+        width: 50%;
+    }
+
+    /* Services Range */
+    .services-range {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .services-columns {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .services-columns .service-column:last-child {
+        grid-column: span 1;
+    }
+
+    .service-column h3 {
+        font-size: 26px;
+    }
+
+    /* First Meeting */
+    .first-meeting-v4 {
+        padding: 50px 0;
+    }
+
+    .badge-line {
+        font-size: 20px;
+        padding: 15px 25px;
+    }
+
+    .meeting-steps {
+        gap: 15px;
+    }
+
+    .step-content h3 {
+        font-size: 18px;
+    }
+
+    /* Tariffs */
+    .tariffs-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Testimonials */
+    .testimonials-section {
+        padding: 50px 0;
+    }
+
+    .testimonials-track {
+        gap: 15px;
+    }
+
+    .testimonial-card {
+        min-width: 280px;
+        padding: 25px 20px;
+    }
+
+    /* Telegram Section */
+    .tg-chat-section {
+        padding: 50px 0;
+    }
+
+    .tg-chat-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .tg-chat-info {
+        text-align: center;
+    }
+
+    .tg-channel-title {
+        font-size: 28px;
+    }
+
+    .tg-chat-window {
+        max-width: 100%;
+    }
+
+    /* YouTube Section */
+    .about-youtube-section {
+        min-height: auto;
+        padding: 50px 0;
+    }
+
+    .youtube-content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .youtube-text-content {
+        text-align: center;
+    }
+
+    .youtube-channel-title {
+        font-size: 28px;
+    }
+
+    .youtube-subscribers-badge {
+        font-size: 24px;
+    }
+
+    .youtube-subscribers-badge::before,
+    .youtube-subscribers-badge::after {
+        width: 30px;
+    }
+
+    /* FAQ */
+    .faq-section {
+        padding: 50px 0;
+    }
+
+    .faq-question {
+        font-size: 16px;
+        padding: 18px 50px 18px 20px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-nav {
+        justify-content: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    /* About Page */
+    .about-hero-minimal {
+        padding: 80px 0 40px;
+    }
+
+    .minimal-main-title {
+        font-size: 42px;
+    }
+
+    .minimal-subtitle {
+        font-size: 14px;
+    }
+
+    .minimal-images-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .minimal-image-card {
+        height: 150px;
+    }
+
+    .about-text-clean {
+        padding: 30px 20px;
+    }
+
+    .accent-phrase {
+        font-size: 16px;
+    }
+
+    .about-profession-title {
+        font-size: 24px;
+    }
+
+    /* Help cards */
+    .help-numbered-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+    }
+
+    .help-numbered-card {
+        padding: 35px 20px 25px;
+    }
+
+    /* CTA Section */
+    .about-cta-content h2 {
+        font-size: 32px;
+        white-space: normal;
+    }
+
+    /* Questionnaire pages */
+    .questionnaire-card {
+        padding: 40px 25px;
+        margin: 0 15px;
+    }
+
+    .questionnaire-title {
+        font-size: 32px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px;
+    }
+
+    /* Thanks page */
+    .thanks-content h1 {
+        font-size: 36px;
+    }
+
+    .thanks-content p {
+        font-size: 16px;
+    }
+}
+
+/* ========================================
+   SMALL MOBILE (< 480px)
+   ======================================== */
+@media (max-width: 480px) {
+    /* Typography */
+    .hero-title {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .mission-text {
+        font-size: 24px;
+    }
+
+    /* Hero */
+    .hero-image {
+        max-width: 250px;
+    }
+
+    .hero-image img {
+        height: 300px;
+    }
+
+    /* Services Grid */
+    .grid-item {
+        min-height: 250px;
+    }
+
+    .grid-overlay h3 {
+        font-size: 18px;
+    }
+
+    .grid-overlay p {
+        font-size: 15px;
+    }
+
+    /* First card */
+    .first-card-content h3 {
+        font-size: 20px;
+    }
+
+    .first-card-hover p {
+        font-size: 18px;
+    }
+
+    /* About page */
+    .minimal-main-title {
+        font-size: 36px;
+    }
+
+    .minimal-images-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .minimal-image-card {
+        height: 120px;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+        min-width: 260px;
+    }
+
+    /* Buttons */
+    .btn-hero-call,
+    .btn-soft,
+    .btn-cta {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+
+    /* Questionnaire */
+    .questionnaire-card {
+        padding: 30px 20px;
+    }
+
+    .questionnaire-title {
+        font-size: 28px;
+    }
+
+    .questionnaire-logo {
+        width: 100px;
+        height: 100px;
     }
 }
 
