@@ -93,7 +93,7 @@
 					<div class="first-card-content">
 						<h3>Как я работаю</h3>
 						<div class="first-card-image">
-							<img src="images/2.png" alt="Nutritionist Coach">
+							<img src="images/YV-small.webp" alt="Nutritionist Coach">
 						</div>
 					</div>
 					<div class="first-card-hover">
@@ -205,7 +205,13 @@
 			<h2 class="section-title script-text">Выберите свой комфортный темп</h2>
 			<p class="tariffs-subtitle">До консультации я попрошу вас заполнить небольшую анкету.</p>
 
-			<div class="tariffs-grid">
+			<div class="tariffs-carousel-wrapper">
+				<button class="tariffs-arrow tariffs-arrow-left" aria-label="Предыдущий">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M15 18l-6-6 6-6"/>
+					</svg>
+				</button>
+				<div class="tariffs-grid">
 				<!-- Тариф 1: Разовая консультация -->
 				<div class="tariff-card-collapsible">
 					<div class="tariff-card-preview">
@@ -307,6 +313,12 @@
 					</div>
 					<a href="https://t.me/YuliaVoronova78" class="btn-tariff-fixed">Записаться на консультацию</a>
 				</div>
+			</div>
+				<button class="tariffs-arrow tariffs-arrow-right" aria-label="Следующий">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M9 18l6-6-6-6"/>
+					</svg>
+				</button>
 			</div>
 		</div>
 	</section>
@@ -546,10 +558,9 @@
 					</div>
 
 					<!-- Email форма -->
-					<form action="https://api.web3forms.com/submit" method="POST" class="contact-email-form">
+					<form action="https://api.web3forms.com/submit" method="POST" class="contact-email-form" id="contact-form">
 						<input type="hidden" name="access_key" value="88b78c43-b948-4c57-bddc-5e15238da35c">
 						<input type="hidden" name="subject" value="Вопрос с сайта">
-						<input type="hidden" name="redirect" value="https://mikvoron.github.io/questionnaire-Yulia-Voronova/thanks.html">
 
 						<div class="form-row">
 							<input type="email" name="email" placeholder="Ваш email" required class="contact-input">
@@ -749,6 +760,21 @@
 			</div>
 		</div>
 	</footer>
+
+	<!-- Success Modal -->
+	<div id="success-modal" class="success-modal">
+		<div class="success-modal-content">
+			<span class="success-modal-close">&times;</span>
+			<div class="success-modal-icon">
+				<svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+					<polyline points="22 4 12 14.01 9 11.01"/>
+				</svg>
+			</div>
+			<h3>Ваш вопрос успешно отправлен!</h3>
+			<p>Я отвечу на него в ближайшее время!</p>
+		</div>
+	</div>
 
 	<script src="main.js"></script>
 </body>

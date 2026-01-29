@@ -189,11 +189,18 @@ document.addEventListener('DOMContentLoaded', () => {
             updateArrowsState();
         }, 150);
 
-        // Debounce для scroll
+        // Debounce для scroll - обновляем активную карточку при свайпе
         let scrollTimeout;
         tariffsGrid.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
+                const newIndex = getCurrentCardIndex();
+                if (newIndex !== currentIndex) {
+                    currentIndex = newIndex;
+                    cards.forEach((c, i) => {
+                        c.classList.toggle('active', i === currentIndex);
+                    });
+                }
                 updateArrowsState();
             }, 100);
         });
@@ -443,6 +450,32 @@ document.addEventListener('DOMContentLoaded', () => {
     gridItems.forEach(item => {
         animateOnScroll.observe(item);
     });
+
+    // Mobile tap toggle for grid items
+    if ('ontouchstart' in window) {
+        gridItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Не срабатываем на ссылках
+                if (e.target.closest('a')) return;
+
+                // Toggle active class
+                if (this.classList.contains('tapped')) {
+                    this.classList.remove('tapped');
+                } else {
+                    // Remove tapped from all other items
+                    gridItems.forEach(i => i.classList.remove('tapped'));
+                    this.classList.add('tapped');
+                }
+            });
+        });
+
+        // Close on tap outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.grid-item')) {
+                gridItems.forEach(i => i.classList.remove('tapped'));
+            }
+        });
+    }
 
     // Observe other elements for fade-in animation
     document.querySelectorAll('.testimonial-card, .booking-info').forEach(el => {
@@ -969,4 +1002,78 @@ document.addEventListener('DOMContentLoaded', function() {
             tooltip.classList.remove('show');
         }
     });
+});
+
+// Contact Form - Modal instead of redirect
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contact-form');
+    const successModal = document.getElementById('success-modal');
+    const modalClose = document.querySelector('.success-modal-close');
+
+    if (contactForm && successModal) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Check privacy checkbox
+            const privacyCheckbox = contactForm.querySelector('input[name="privacy"]');
+            const privacyLabel = contactForm.querySelector('.privacy-checkbox');
+
+            if (privacyCheckbox && !privacyCheckbox.checked) {
+                // Animate checkbox to attract attention
+                privacyLabel.classList.add('shake');
+                setTimeout(() => {
+                    privacyLabel.classList.remove('shake');
+                }, 600);
+                return;
+            }
+
+            const formData = new FormData(contactForm);
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    // Show success modal
+                    successModal.classList.add('active');
+                    contactForm.reset();
+
+                    // Auto-close after 5 seconds
+                    setTimeout(() => {
+                        successModal.classList.remove('active');
+                    }, 5000);
+                } else {
+                    alert('Произошла ошибка. Попробуйте ещё раз.');
+                }
+            } catch (error) {
+                alert('Произошла ошибка. Попробуйте ещё раз.');
+            }
+
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        });
+
+        // Close modal on X click
+        if (modalClose) {
+            modalClose.addEventListener('click', () => {
+                successModal.classList.remove('active');
+            });
+        }
+
+        // Close modal on overlay click
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.remove('active');
+            }
+        });
+    }
 });

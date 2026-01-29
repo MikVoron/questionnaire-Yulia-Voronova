@@ -848,7 +848,8 @@ button[class*="btn-"]:hover,
     transform: translateY(0) scale(0.92) !important;
 }
 
-.grid-item:hover {
+.grid-item:hover,
+.grid-item.tapped {
     transform: scale(1.15) !important;
     opacity: 1 !important;
     z-index: 10;
@@ -858,11 +859,13 @@ button[class*="btn-"]:hover,
     outline-offset: -4px;
 }
 
-.grid-item.hidden:hover {
+.grid-item.hidden:hover,
+.grid-item.hidden.tapped {
     transform: translateY(30px) scale(1.15) !important;
 }
 
-.grid-item.hidden.animate:hover {
+.grid-item.hidden.animate:hover,
+.grid-item.hidden.animate.tapped {
     transform: translateY(0) scale(1.15) !important;
 }
 
@@ -1023,11 +1026,13 @@ button[class*="btn-"]:hover,
     line-height: 1.6;
 }
 
-.grid-item.first-card:hover .first-card-content {
+.grid-item.first-card:hover .first-card-content,
+.grid-item.first-card.tapped .first-card-content {
     opacity: 0;
 }
 
-.grid-item.first-card:hover .first-card-hover {
+.grid-item.first-card:hover .first-card-hover,
+.grid-item.first-card.tapped .first-card-hover {
     opacity: 1;
 }
 
@@ -1066,7 +1071,8 @@ button[class*="btn-"]:hover,
     transition: opacity 0.4s ease;
 }
 
-.grid-item:hover .card-icon {
+.grid-item:hover .card-icon,
+.grid-item.tapped .card-icon {
     opacity: 0;
     max-height: 0;
 }
@@ -1075,7 +1081,8 @@ button[class*="btn-"]:hover,
     position: relative;
 }
 
-.grid-item:hover img {
+.grid-item:hover img,
+.grid-item.tapped img {
     transform: scale(1.1);
 }
 
@@ -1094,7 +1101,8 @@ button[class*="btn-"]:hover,
     transition: padding 0.4s ease;
 }
 
-.grid-item:hover .grid-overlay {
+.grid-item:hover .grid-overlay,
+.grid-item.tapped .grid-overlay {
     padding: 30px 40px 40px 40px;
 }
 
@@ -1118,7 +1126,8 @@ button[class*="btn-"]:hover,
 }
 
 /* Заголовки видны по умолчанию, скрываются при ховере */
-.grid-item:hover .grid-overlay h3 {
+.grid-item:hover .grid-overlay h3,
+.grid-item.tapped .grid-overlay h3 {
     opacity: 0;
 }
 
@@ -4465,15 +4474,20 @@ button[class*="btn-"]:hover,
     .testimonial-info-card {
         max-width: 100%;
         order: -1;
-        padding: 20px;
+        padding: 15px;
+        font-size: 0.9rem;
     }
 
     .testimonial-info-name {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .testimonial-info-problem {
+        font-size: 0.85rem;
     }
 
     .testimonial-modal-content img {
-        max-height: 50vh;
+        max-height: 65vh;
     }
 
     .testimonial-modal-nav {
@@ -6696,18 +6710,22 @@ button[class*="btn-"]:hover,
         width: 100%;
         text-align: center;
         background: #e8e8e8;
-        padding: 20px 15px;
+        padding: 10px 0 0;
         overflow: hidden;
+        margin-top: -10px;
     }
 
     .about-youtube-section.variant-3 .youtube-computer-image img {
-        max-width: 120%;
+        width: 180%;
+        max-width: none;
         height: auto;
-        margin-left: -10%;
+        margin-left: -40%;
+		margin-top: -225px;
+        display: block;
     }
 
     .about-youtube-section.variant-3 .youtube-text-content {
-        padding: 20px 15px 0;
+        padding: 20px 15px 20px;
     }
 
     .about-youtube-section.variant-3 .youtube-text-content .container {
@@ -6776,8 +6794,9 @@ button[class*="btn-"]:hover,
     }
 
     .about-youtube-section.variant-3 .youtube-btn-wrapper {
-        padding: 30px 0 25px;
+        padding: 20px 0;
         margin-top: 0;
+        text-align: center;
     }
 }
 
@@ -7254,7 +7273,9 @@ button[class*="btn-"]:hover,
     }
 
     .carousel-btn {
-        display: none;
+        display: flex;
+        width: 36px;
+        height: 36px;
     }
 
     .carousel-dots {
@@ -9038,7 +9059,7 @@ button[class*="btn-"]:hover,
 
     /* Hero */
     .hero {
-        padding: 80px 0 40px;
+        padding: 20px 0 40px;
         overflow: visible;
     }
 
@@ -9063,7 +9084,7 @@ button[class*="btn-"]:hover,
     }
 
     .hero-tag {
-        left: 50%;
+        left: -20%;
         transform: translateX(-50%);
         bottom: 10px;
         font-size: 11px;
@@ -9436,13 +9457,22 @@ button[class*="btn-"]:hover,
         justify-content: center;
     }
 
+    .footer-nav a {
+        text-transform: capitalize;
+    }
+
+    .footer-nav a[href*="faq"],
+    .footer-nav a[href*="FAQ"] {
+        text-transform: uppercase;
+    }
+
     .footer-social {
         justify-content: center;
     }
 
     /* About Page */
     .about-hero-minimal {
-        padding: 80px 0 40px;
+        padding: 20px 0 40px;
     }
 
     .minimal-main-title {
@@ -9456,7 +9486,7 @@ button[class*="btn-"]:hover,
     .minimal-images-row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: 3px;
         max-width: 100%;
         margin: 0 auto;
         padding: 0 15px;
@@ -9662,3 +9692,95 @@ button[class*="btn-"]:hover,
     }
 }
 
+/* ========================================
+   SUCCESS MODAL
+   ======================================== */
+.success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.success-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.success-modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.success-modal.active .success-modal-content {
+    transform: scale(1);
+}
+
+.success-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.success-modal-close:hover {
+    color: #333;
+}
+
+.success-modal-icon {
+    margin-bottom: 20px;
+    color: var(--sage-green);
+}
+
+.success-modal-icon svg {
+    stroke: var(--sage-green);
+}
+
+.success-modal-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--dark-text);
+    margin-bottom: 10px;
+}
+
+.success-modal-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Privacy checkbox shake animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.privacy-checkbox.shake {
+    animation: shake 0.6s ease-in-out;
+}
+
+.privacy-checkbox.shake .privacy-checkmark {
+    border-color: #e74c3c;
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
+}
