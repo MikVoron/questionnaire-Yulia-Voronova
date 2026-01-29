@@ -1632,7 +1632,7 @@ button[class*="btn-"]:hover,
 
     .hero-title {
         font-size: 36px;
-    }
+		    }
 
     .container,
     .container-wide {
@@ -3763,6 +3763,11 @@ button[class*="btn-"]:hover,
     z-index: 1;
 }
 
+/* Десктоп - стрелки скрыты */
+.diplomas-arrow {
+    display: none;
+}
+
 .diplomas-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -4011,11 +4016,53 @@ button[class*="btn-"]:hover,
         padding: 60px 0;
     }
 
+    /* Карусель дипломов на мобильном */
+    .diplomas-carousel-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 5px;
+    }
+
+    .diplomas-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--sage-green);
+        color: white;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+
+    .diplomas-arrow:hover {
+        background: var(--dark-sage);
+    }
+
+    .diplomas-arrow.disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
     .diplomas-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 15px 10px;
-        max-width: 500px;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding: 15px 10px 25px;
+        flex: 1;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .diplomas-grid::-webkit-scrollbar {
+        display: none;
     }
 
     .diplomas .section-title {
@@ -4023,12 +4070,31 @@ button[class*="btn-"]:hover,
     }
 
     .diploma-card {
+        flex: 0 0 70%;
+        max-width: 250px;
+        scroll-snap-align: center;
         padding: 12px;
-        border: 5px solid var(--sage-green);
+        border: 5px solid transparent;
+        transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease, border-color 0.3s ease;
+        transform: scale(0.85);
+        filter: blur(2px);
+        opacity: 0.6;
+    }
+
+    .diploma-card.active {
+        transform: scale(1);
+        filter: blur(0);
+        opacity: 1;
+        border-color: var(--sage-green);
+        z-index: 5;
     }
 
     .diploma-card:hover {
-        transform: translateY(-3px) scale(1.01);
+        transform: scale(0.85);
+    }
+
+    .diploma-card.active:hover {
+        transform: scale(1);
     }
 }
 
@@ -5204,7 +5270,7 @@ button[class*="btn-"]:hover,
 /* ВАРИАНТ 1: Крупный акцент (оригинал) */
 .text-variant-1 .accent-phrase {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
+    font-size: 31px;
     font-weight: 300;
 	font-style: italic;
    color: var(--dark-text);
@@ -6565,6 +6631,11 @@ button[class*="btn-"]:hover,
     line-height: 1.5;
 }
 
+/* Computer image - hidden on desktop (uses background) */
+.about-youtube-section.variant-3 .youtube-computer-image {
+    display: none;
+}
+
 /* Button at bottom */
 .about-youtube-section.variant-3 .youtube-btn-wrapper {
     padding: 30px 0 40px;
@@ -6615,12 +6686,28 @@ button[class*="btn-"]:hover,
     .about-youtube-section.variant-3 {
         min-height: auto;
         padding: 0;
-        background-position: center 55%;
-        background-size: 90% auto;
+        background: none;
+        margin: 0;
+        gap: 0;
+    }
+
+    .about-youtube-section.variant-3 .youtube-computer-image {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: #e8e8e8;
+        padding: 20px 15px;
+        overflow: hidden;
+    }
+
+    .about-youtube-section.variant-3 .youtube-computer-image img {
+        max-width: 120%;
+        height: auto;
+        margin-left: -10%;
     }
 
     .about-youtube-section.variant-3 .youtube-text-content {
-        padding: 20px 10px 0;
+        padding: 20px 15px 0;
     }
 
     .about-youtube-section.variant-3 .youtube-text-content .container {
@@ -6689,7 +6776,8 @@ button[class*="btn-"]:hover,
     }
 
     .about-youtube-section.variant-3 .youtube-btn-wrapper {
-        padding: 20px 0 25px;
+        padding: 30px 0 25px;
+        margin-top: 0;
     }
 }
 
@@ -7233,7 +7321,7 @@ button[class*="btn-"]:hover,
 
 .questionnaire-subtitle {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
     color: var(--sage-green);
     text-transform: uppercase;
@@ -8684,6 +8772,15 @@ button[class*="btn-"]:hover,
    RESPONSIVE DESIGN
    ======================================== */
 
+/* Tariffs carousel wrapper - скрываем стрелки на десктопе */
+.tariffs-carousel-wrapper {
+    display: block;
+}
+
+.tariffs-arrow {
+    display: none;
+}
+
 /* Burger Menu */
 .burger-menu {
     display: none;
@@ -8707,16 +8804,67 @@ button[class*="btn-"]:hover,
     transition: all 0.3s ease;
 }
 
-.burger-menu.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+/* Прячем бургер когда меню открыто (крестик только внутри nav) */
+.burger-menu.active {
+    display: none;
 }
 
-.burger-menu.active span:nth-child(2) {
-    opacity: 0;
+/* Burger hover animation - темнее для видимости */
+.burger-menu:hover span {
+    background-color: var(--dark-sage);
 }
 
-.burger-menu.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+.burger-menu:hover span:nth-child(1) {
+    transform: translateY(-2px);
+}
+
+.burger-menu:hover span:nth-child(3) {
+    transform: translateY(2px);
+}
+
+/* Nav Close Button (X) */
+.nav-close {
+    display: none;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 35px;
+    height: 35px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-close span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.nav-close span:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.nav-close span:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.nav-close:hover span {
+    background-color: var(--beige);
+}
+
+.nav-close:hover span:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.nav-close:hover span:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 /* ========================================
@@ -8804,32 +8952,60 @@ button[class*="btn-"]:hover,
         position: relative;
     }
 
-    /* Navigation */
+    /* Navigation - анимация выезда снизу с масштабированием */
     .nav {
         display: flex;
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 320px;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
         height: 100vh;
-        background: var(--dark-sage);
+        background: linear-gradient(135deg, var(--dark-sage) 0%, var(--sage-green) 100%);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 30px;
-        transition: right 0.3s ease;
+        gap: 25px;
         z-index: 1000;
-        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.4s ease;
     }
 
     .nav.active {
-        right: 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Close button в мобильном меню */
+    .nav-close {
+        display: block;
     }
 
     .nav a {
-        font-size: 18px;
-        padding: 10px 20px;
+        font-size: 22px;
+        padding: 12px 30px;
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+        transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
+        letter-spacing: 1px;
+    }
+
+    .nav.active a {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    .nav.active a:nth-child(2) { transition-delay: 0.1s; }
+    .nav.active a:nth-child(3) { transition-delay: 0.15s; }
+    .nav.active a:nth-child(4) { transition-delay: 0.2s; }
+    .nav.active a:nth-child(5) { transition-delay: 0.25s; }
+    .nav.active a:nth-child(6) { transition-delay: 0.3s; }
+    .nav.active a:nth-child(7) { transition-delay: 0.35s; }
+
+    .nav a:hover {
+        transform: scale(1.1);
     }
 
     /* Overlay */
@@ -8842,10 +9018,13 @@ button[class*="btn-"]:hover,
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
         z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     .nav-overlay.active {
         display: block;
+        opacity: 1;
     }
 
     /* Container */
@@ -8859,51 +9038,69 @@ button[class*="btn-"]:hover,
 
     /* Hero */
     .hero {
-        padding: 60px 0 40px;
+        padding: 80px 0 40px;
+        overflow: visible;
     }
 
     .hero-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         text-align: center;
+        align-items: center;
     }
 
     .hero-image {
-        order: -1;
-        max-width: 300px;
+        order: 1;
+        max-width: 280px;
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
     }
 
     .hero-image img {
-        height: 350px;
+        height: 320px;
     }
 
     .hero-tag {
         left: 50%;
         transform: translateX(-50%);
-        bottom: 15px;
-        font-size: 12px;
-        padding: 10px 20px;
+        bottom: 10px;
+        font-size: 11px;
+        padding: 8px 15px;
+    }
+
+    .hero-text {
+        order: 2;
+        position: relative;
+        z-index: 2;
+        background: var(--white);
+        padding: 15px;
+        margin: 0 10px;
+        border-radius: 10px;
     }
 
     .hero-title {
-        font-size: 24px;
-        line-height: 1.4;
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--dark-text);
+        margin: 0;
     }
 
     .hero-cta {
+        order: 3;
         margin-left: 0;
         text-align: center;
     }
 
     /* Mission */
     .mission-text {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     /* About section */
     .about-text {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     /* Services Grid */
@@ -8924,52 +9121,221 @@ button[class*="btn-"]:hover,
         width: 50%;
     }
 
-    /* Services Range */
+    /* Services Range - карточки одинакового размера */
     .services-range {
         padding: 40px 0;
     }
 
     .section-title {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .services-columns {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
-    .services-columns .service-column:last-child {
-        grid-column: span 1;
+    .service-column {
+        width: 100%;
+        max-width: 400px;
+        min-height: auto;
+        height: auto;
+        padding: 30px 25px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-column p {
+        font-size: 14px;
+        line-height: 1.6;
     }
 
     .service-column h3 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
-    /* First Meeting */
+    /* First Meeting - дизайн как на десктопе */
     .first-meeting-v4 {
-        padding: 50px 0;
+        padding: 20px 15px 50px;
     }
 
-    .badge-line {
-        font-size: 20px;
-        padding: 15px 25px;
+    .first-meeting-v4 .meeting-centered {
+        max-width: 100%;
+        padding: 0 15px;
     }
 
-    .meeting-steps {
-        gap: 15px;
+    .first-meeting-v4 .badge-line {
+        font-size: 26px;
+        margin-bottom: 30px;
     }
 
-    .step-content h3 {
-        font-size: 18px;
+    .first-meeting-v4 .meeting-steps {
+        gap: 25px;
+        margin-bottom: 30px;
+        position: relative;
     }
 
-    /* Tariffs */
-    .tariffs-grid {
-        grid-template-columns: 1fr;
+    .first-meeting-v4 .meeting-steps::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 20px;
+        bottom: 20px;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--sage-green) 0%, var(--beige) 100%);
+        z-index: 0;
+    }
+
+    .first-meeting-v4 .step-item {
+        display: flex;
+		flex-direction: row;
         gap: 20px;
-        max-width: 400px;
-        margin: 0 auto;
+        position: relative;
+        padding: 15px;
+        margin: -15px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .first-meeting-v4 .step-item.animate-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .first-meeting-v4 .step-item:nth-child(1) { transition-delay: 0.1s; }
+    .first-meeting-v4 .step-item:nth-child(2) { transition-delay: 0.3s; }
+    .first-meeting-v4 .step-item:nth-child(3) { transition-delay: 0.5s; }
+
+    .first-meeting-v4 .step-item:hover {
+        background: transparent;
+        transform: none;
+    }
+
+    .first-meeting-v4 .step-marker {
+        width: 22px;
+        min-width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: var(--sage-green);
+        border: 3px solid var(--white);
+        box-shadow: 0 0 0 2px var(--sage-green);
+        position: relative;
+        z-index: 1;
+    }
+
+    .first-meeting-v4 .step-content h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .first-meeting-v4 .step-content p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .first-meeting-v4 .btn-soft {
+        padding: 12px 30px;
+        font-size: 13px;
+    }
+
+    /* Tariffs - карусель на мобильном */
+    .tariffs-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        padding: 20px 50px;
+        max-width: 100%;
+        margin: 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .tariffs-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tariff-card-collapsible {
+        flex: 0 0 80%;
+        max-width: 300px;
+        scroll-snap-align: center;
+        transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+        transform: scale(0.85);
+        filter: blur(3px);
+        opacity: 0.6;
+    }
+
+    /* Активная (центральная) карточка */
+    .tariff-card-collapsible.active {
+        transform: scale(1);
+        filter: blur(0);
+        opacity: 1;
+        z-index: 5;
+    }
+
+    /* Отключаем hover эффекты на мобильном */
+    .tariff-card-collapsible:hover,
+    .tariff-card-collapsible.popular:hover {
+        transform: scale(0.85);
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+    .tariff-card-collapsible.active:hover {
+        transform: scale(1);
+    }
+
+    /* Tariffs carousel wrapper с стрелками */
+    .tariffs-carousel-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .tariffs-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        background: var(--sage-green);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        color: var(--white);
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+
+    .tariffs-arrow:hover:not(.disabled) {
+        background: var(--dark-sage);
+        transform: scale(1.1);
+    }
+
+    .tariffs-arrow.disabled {
+        background: #ccc;
+        cursor: default;
+        opacity: 0.5;
+    }
+
+    .tariffs-arrow.disabled:hover {
+        transform: none;
+    }
+
+    .tariffs-arrow:active {
+        transform: scale(0.95);
+    }
+
+    .tariffs-arrow svg {
+        width: 20px;
+        height: 20px;
     }
 
     /* Testimonials */
@@ -9004,9 +9370,9 @@ button[class*="btn-"]:hover,
         font-size: 28px;
     }
 
-    .tg-chat-window {
+    /* .tg-chat-window {
         max-width: 100%;
-    }
+    } */
 
     /* YouTube Section */
     .about-youtube-section {
@@ -9057,6 +9423,15 @@ button[class*="btn-"]:hover,
         text-align: center;
     }
 
+    .footer-left {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-left .logo {
+        justify-content: center;
+    }
+
     .footer-nav {
         justify-content: center;
     }
@@ -9071,32 +9446,89 @@ button[class*="btn-"]:hover,
     }
 
     .minimal-main-title {
-        font-size: 42px;
+        font-size: 36px;
     }
 
     .minimal-subtitle {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .minimal-images-row {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 15px;
     }
 
     .minimal-image-card {
-        height: 150px;
+        aspect-ratio: 1 / 1;
+        height: auto;
+    }
+
+    .minimal-image-overlay {
+        padding: 8px;
+    }
+
+    .minimal-image-overlay span {
+        font-size: 10px;
+        line-height: 1.3;
     }
 
     .about-text-clean {
-        padding: 30px 20px;
+        padding: 25px 15px;
     }
 
     .accent-phrase {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.6;
     }
 
     .about-profession-title {
-        font-size: 24px;
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    /* YouTube карточки на About - компактные */
+    .youtube-features-cards,
+    .youtube-features {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .youtube-feature-card,
+    .about-youtube-section.variant-3 .youtube-feature-card {
+        width: 90%;
+        max-width: 280px;
+        margin: 0 auto;
+        padding: 15px 12px;
+        text-align: center;
+    }
+
+    .youtube-feature-card h4,
+    .about-youtube-section.variant-3 .youtube-feature-card h4 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .youtube-feature-card p,
+    .about-youtube-section.variant-3 .youtube-feature-card p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .feature-card-icon {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 8px;
+    }
+
+    .feature-card-icon svg {
+        width: 20px;
+        height: 20px;
     }
 
     /* Help cards */

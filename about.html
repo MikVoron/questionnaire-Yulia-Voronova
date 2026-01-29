@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="header-content">
 				<a href="index.html" class="logo">
-					<img src="images/icons/LOGO.jpg" alt="Logo" class="logo-img">
+					<img src="images/icons/logo.png"" alt=" Logo" class="logo-img">
 					<span>ЮЛИЯ ВОРОНОВА</span>
 				</a>
 				<button class="burger-menu" aria-label="Меню">
@@ -26,6 +26,10 @@
 					<span></span>
 				</button>
 				<nav class="nav">
+					<button class="nav-close" aria-label="Закрыть меню">
+						<span></span>
+						<span></span>
+					</button>
 					<a href="index.html#home">Главная</a>
 					<a href="about.html" class="active">Обо мне</a>
 					<a href="index.html#tariffs">Тарифы</a>
@@ -180,6 +184,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="youtube-computer-image">
+			<img src="images/background-youtube.webp" alt="YouTube канал">
+		</div>
 		<div class="youtube-btn-wrapper">
 			<a href="https://youtube.com/@voronova_nutrition" target="_blank" class="youtube-subscribe-btn">
 				<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
@@ -220,7 +227,7 @@
 				<div class="tg-msg incoming">
 					<div class="tg-bubble">
 						<strong>Личный опыт</strong>
-						Обо всем, что связано с питанием и здоровьем.
+						Мария, пишу обо всем, что связано с питанием и здоровьем.
 					</div>
 				</div>
 				<div class="tg-msg outgoing">
@@ -238,7 +245,7 @@
 				<div class="tg-msg incoming">
 					<div class="tg-bubble">
 						<strong>Научные исследования</strong>
-						Да, конечно. Все свои рекомендации я строю, опираясь на научные исследования.
+						Да, Елена, конечно. Все свои рекомендации я строю, опираясь на научные исследования.
 					</div>
 				</div>
 				<div class="tg-msg outgoing">
@@ -256,13 +263,13 @@
 				<div class="tg-msg incoming">
 					<div class="tg-bubble">
 						<strong>Полезные рецепты</strong>
-						Конечно 😉 Интересные сочетания продуктов. Примеры готовых завтраков-обедов и ужинов. Честно показываю что ем я и моя семья каждый день.
+						А как же 😉 Интересные сочетания продуктов. Примеры готовых завтраков-обедов и ужинов. Честно показываю что ем я и моя семья каждый день. Уверена, что вам понравится, Анна!
 					</div>
 				</div>
 				<div class="tg-msg incoming">
 					<div class="tg-bubble">
 						<strong>Ответы на вопросы</strong>
-						Также я всегда отвечаю на вопросы подписчиков на канале. Это очень важно для меня.
+						Также я всегда отвечаю на вопросы подписчиков на канале 💚 Это очень важно для меня.
 					</div>
 				</div>
 			</div>
@@ -282,25 +289,38 @@
 	<section class="diplomas diplomas-fullwidth">
 		<div class="container">
 			<h2 class="section-title script-text">Мои дипломы и сертификаты</h2>
-			<div class="diplomas-grid">
-				<div class="diploma-card" data-diploma="images/Diploma.webp">
-					<img src="images/Diploma.webp" alt="Диплом 1">
+			<div class="diplomas-carousel-wrapper">
+				<button class="diplomas-arrow diplomas-arrow-left" aria-label="Предыдущий">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M15 18l-6-6 6-6" />
+					</svg>
+				</button>
+				<div class="diplomas-grid">
+
+					<div class="diploma-card" data-diploma="images/certifiсate.webp">
+						<img src="images/certifiсate.webp" alt="Диплом 1">
+					</div>
+					<div class="diploma-card" data-diploma="images/Diploma.webp">
+						<img src="images/Diploma.webp" alt="Диплом 2">
+					</div>
+					<div class="diploma-card" data-diploma="images/certifiсate-2.webp">
+						<img src="images/certifiсate-2.webp" alt="Диплом 3">
+					</div>
+					<div class="diploma-card" data-diploma="images/certifiсate-3.webp">
+						<img src="images/certifiсate-3.webp" alt="Диплом 4">
+					</div>
+					<div class="diploma-card" data-diploma="images/certifiсate-4.webp">
+						<img src="images/certifiсate-4.webp" alt="Диплом 5">
+					</div>
+					<div class="diploma-card" data-diploma="images/certifiсate-5.webp">
+						<img src="images/certifiсate-5.webp" alt="Диплом 6">
+					</div>
 				</div>
-				<div class="diploma-card" data-diploma="images/certifiсate.webp">
-					<img src="images/certifiсate.webp" alt="Диплом 2">
-				</div>
-				<div class="diploma-card" data-diploma="images/certifiсate-2.webp">
-					<img src="images/certifiсate-2.webp" alt="Диплом 3">
-				</div>
-				<div class="diploma-card" data-diploma="images/certifiсate-3.webp">
-					<img src="images/certifiсate-3.webp" alt="Диплом 4">
-				</div>
-				<div class="diploma-card" data-diploma="images/certifiсate-4.webp">
-					<img src="images/certifiсate-4.webp" alt="Диплом 5">
-				</div>
-				<div class="diploma-card" data-diploma="images/certifiсate-5.webp">
-					<img src="images/certifiсate-5.webp" alt="Диплом 6">
-				</div>
+				<button class="diplomas-arrow diplomas-arrow-right" aria-label="Следующий">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M9 18l6-6-6-6" />
+					</svg>
+				</button>
 			</div>
 		</div>
 	</section>
@@ -334,10 +354,10 @@
 		<div class="container">
 			<div class="footer-content">
 				<div class="footer-left">
-					<div class="logo">
-						<img src="images/icons/LOGO.jpg" alt="Logo" class="logo-img">
+					<a href="index.html" class="logo">
+						<img src="images/icons/logo.png"" alt=" Logo" class="logo-img">
 						<span>ЮЛИЯ ВОРОНОВА</span>
-					</div>
+					</a>
 				</div>
 
 				<div class="footer-center">
