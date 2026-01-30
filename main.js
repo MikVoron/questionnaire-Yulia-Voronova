@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { passive: true });
 
             // Показываем/скрываем стрелки при видимости секции тарифов
+            // Стрелки появляются когда карточки видны на экране
             const tariffsSection = document.querySelector('.tariffs');
             if (tariffsSection && 'IntersectionObserver' in window) {
                 const arrowsObserver = new IntersectionObserver((entries) => {
@@ -167,9 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         tariffsSection.classList.toggle('arrows-visible', entry.isIntersecting);
                     });
                 }, {
-                    threshold: 0.5
+                    threshold: 0.3
                 });
-                arrowsObserver.observe(tariffsSection);
+                arrowsObserver.observe(tariffsGrid);
             }
         }
     }

@@ -797,19 +797,6 @@ button[class*="btn-"]:hover,
     font-weight: 400;
 }
 
-.mission-mobile {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .mission-desktop {
-        display: none;
-    }
-    .mission-mobile {
-        display: inline;
-    }
-}
-
 /* About Section */
 .about {
     padding: 60px 0;
@@ -1550,6 +1537,31 @@ button[class*="btn-"]:hover,
     opacity: 0.95;
     line-height: 1.6;
     margin-bottom: 40px;
+}
+
+.telegram-subscribe-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    font-size: 18px;
+    display: inline-block;
+    text-align: left;
+}
+
+.telegram-subscribe-list li {
+    position: relative;
+    padding: 8px 0 8px 30px;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+.telegram-subscribe-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .btn-telegram {
@@ -2595,7 +2607,7 @@ button[class*="btn-"]:hover,
    ======================================== */
 .tariffs {
     background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
-    padding: 80px 0;
+    padding: 30px 0;
 }
 
 .tariffs .section-title {
@@ -3693,7 +3705,7 @@ button[class*="btn-"]:hover,
 /* FAQ CTA */
 .faq-cta {
     text-align: center;
-    padding: 60px 0 0;
+    padding: 30px 0 0;
 }
 
 .faq-cta-title {
@@ -4136,12 +4148,12 @@ button[class*="btn-"]:hover,
    ======================================== */
 .testimonials-social {
     background: var(--cream);
-    padding: 80px 0;
+    padding: 20px 0;
 }
 
 .testimonials-social .section-title {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 15px;
 }
 
 /* Carousel Wrapper */
@@ -4542,7 +4554,7 @@ button[class*="btn-"]:hover,
 }
 
 .footer-divider {
-    height: 2px;
+    height: 1px;
     background: linear-gradient(90deg, transparent 0%, var(--sage-green) 50%, transparent 100%);
     margin: 0 auto;
     max-width: 1200px;
@@ -4553,7 +4565,7 @@ button[class*="btn-"]:hover,
     grid-template-columns: 1fr 2fr 1fr;
     gap: 40px;
     align-items: center;
-    padding: 60px 0 40px;
+    padding: 30px 0 25px;
 }
 
 .footer-logo-section {
@@ -4612,15 +4624,15 @@ button[class*="btn-"]:hover,
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(3, auto);
     grid-auto-flow: column;
-    gap: 12px 60px;
+    gap: 12px 26px;
     justify-content: center;
     max-width: 400px;
     margin: 0 auto;
 }
 
 .footer-nav.footer-nav-grid a {
-    text-align: center;
-    justify-self: center;
+    text-align: left;
+    justify-self: left;
 }
 
 .footer-nav a {
@@ -4776,12 +4788,12 @@ button[class*="btn-"]:hover,
 
 @media (max-width: 768px) {
     .faq {
-        padding: 60px 0;
+        padding: 35px 0;
     }
 
     .faq .section-title {
         font-size: 36px;
-        margin-bottom: 40px;
+        margin-bottom: 10px;
     }
 
     .faq-question h3 {
@@ -8812,6 +8824,12 @@ button[class*="btn-"]:hover,
     .contact-options {
         max-width: 100%;
     }
+
+    .contact-submit-btn {
+        width: auto;
+        min-width: 200px;
+        margin: 0 auto;
+    }
 }
 
 /* ========================================
@@ -9402,14 +9420,14 @@ button[class*="btn-"]:hover,
         justify-content: center;
         width: 44px;
         height: 44px;
-        background: var(--sage-green);
+        background: rgba(139, 166, 139, 0.5);
         border: none;
         border-radius: 50%;
         cursor: pointer;
         color: var(--white);
         transition: background 0.3s ease, opacity 0.3s ease;
         z-index: 100;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .tariffs-arrow.tariffs-arrow-left {
@@ -9699,7 +9717,7 @@ button[class*="btn-"]:hover,
     }
 
     .section-title {
-        font-size: 28px;
+        font-size: 36px;
     }
 
     .mission-text {
