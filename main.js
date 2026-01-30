@@ -57,165 +57,121 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Tariffs carousel - scroll to middle card (КОНСУЛЬТАЦИЯ 1+1) on mobile
+// Tariffs Stack Carousel - стопка карточек
 document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth <= 768) {
         const tariffsGrid = document.querySelector('.tariffs-grid');
-        const popularCard = document.querySelector('.tariff-card-collapsible.popular');
-        const allCards = document.querySelectorAll('.tariff-card-collapsible');
+        const leftArrow = document.querySelector('.tariffs-arrow-left');
+        const rightArrow = document.querySelector('.tariffs-arrow-right');
+        const cards = document.querySelectorAll('.tariff-card-collapsible');
+        const dots = document.querySelectorAll('.tariff-dot');
 
-        if (tariffsGrid && popularCard) {
-            // Добавляем класс active к центральной карточке
-            allCards.forEach(card => card.classList.remove('active'));
-            popularCard.classList.add('active');
+        if (tariffsGrid && cards.length > 0) {
+            let currentIndex = 1; // Начинаем с карточки 1+1 (средняя)
 
-            setTimeout(() => {
-                const scrollPosition = popularCard.offsetLeft - (tariffsGrid.offsetWidth - popularCard.offsetWidth) / 2;
-                tariffsGrid.scrollLeft = scrollPosition;
-            }, 100);
-        }
-    }
-});
+            // Функция обновления стопки карточек
+            const updateStack = (index) => {
+                if (index < 0) index = 0;
+                if (index >= cards.length) index = cards.length - 1;
+                currentIndex = index;
 
-// Tariffs carousel arrows
-document.addEventListener('DOMContentLoaded', () => {
-    const tariffsGrid = document.querySelector('.tariffs-grid');
-    const leftArrow = document.querySelector('.tariffs-arrow-left');
-    const rightArrow = document.querySelector('.tariffs-arrow-right');
+                cards.forEach((card, i) => {
+                    // Убираем все классы
+                    card.classList.remove('active', 'stack-back-1', 'stack-back-2');
 
-    if (tariffsGrid && leftArrow && rightArrow) {
-        const cards = tariffsGrid.querySelectorAll('.tariff-card-collapsible');
-        let currentIndex = 1; // Начинаем со средней карточки
-        let isScrolling = false;
+                    if (i === currentIndex) {
+                        // Активная карточка
+                        card.classList.add('active');
+                    } else if (i === currentIndex - 1 || i === currentIndex + 1) {
+                        // Соседние карточки - первый уровень стопки
+                        card.classList.add('stack-back-1');
+                    } else {
+                        // Дальние карточки - второй уровень стопки
+                        card.classList.add('stack-back-2');
+                    }
+                });
 
-        // Функция центрирования карточки по индексу
-        const scrollToCard = (index) => {
-            if (index < 0) index = 0;
-            if (index >= cards.length) index = cards.length - 1;
+                // Обновляем точки
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
 
-            currentIndex = index;
-            const card = cards[index];
-
-            // Вычисляем позицию для центрирования
-            const gridRect = tariffsGrid.getBoundingClientRect();
-            const cardRect = card.getBoundingClientRect();
-            const currentScroll = tariffsGrid.scrollLeft;
-
-            // Позиция карточки относительно контейнера + текущий scroll
-            const cardLeftInGrid = card.offsetLeft;
-            const cardWidth = card.offsetWidth;
-            const gridWidth = tariffsGrid.offsetWidth;
-
-            // Целевая позиция scroll чтобы карточка была по центру
-            const targetScroll = cardLeftInGrid - (gridWidth - cardWidth) / 2;
-
-            // Устанавливаем активную карточку сразу
-            cards.forEach((c, i) => {
-                if (i === index) {
-                    c.classList.add('active');
-                } else {
-                    c.classList.remove('active');
-                }
-            });
-
-            tariffsGrid.scrollTo({
-                left: targetScroll,
-                behavior: 'smooth'
-            });
-
-            updateArrowsStateByIndex(index);
-        };
-
-        // Функция определения текущей карточки
-        const getCurrentCardIndex = () => {
-            const gridWidth = tariffsGrid.offsetWidth;
-            const scrollLeft = tariffsGrid.scrollLeft;
-            const centerPoint = scrollLeft + gridWidth / 2;
-
-            let closestIndex = 0;
-            let closestDistance = Infinity;
-
-            cards.forEach((card, index) => {
-                const cardLeft = card.offsetLeft;
-                const cardWidth = card.offsetWidth;
-                const cardCenter = cardLeft + cardWidth / 2;
-                const distance = Math.abs(cardCenter - centerPoint);
-
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestIndex = index;
-                }
-            });
-
-            return closestIndex;
-        };
-
-        // Функция обновления активной карточки (blur эффект)
-        const updateActiveCard = () => {
-            const index = getCurrentCardIndex();
-            currentIndex = index;
-            cards.forEach((card, i) => {
-                if (i === index) {
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
-                }
-            });
-        };
-
-        // Функция обновления состояния стрелок по индексу
-        const updateArrowsStateByIndex = (index) => {
-            if (index <= 0) {
-                leftArrow.classList.add('disabled');
-            } else {
-                leftArrow.classList.remove('disabled');
-            }
-
-            if (index >= cards.length - 1) {
-                rightArrow.classList.add('disabled');
-            } else {
-                rightArrow.classList.remove('disabled');
-            }
-        };
-
-        // Функция обновления состояния стрелок
-        const updateArrowsState = () => {
-            const index = getCurrentCardIndex();
-            updateArrowsStateByIndex(index);
-            updateActiveCard();
-        };
-
-        // Начальное состояние
-        setTimeout(() => {
-            updateArrowsState();
-        }, 150);
-
-        // Debounce для scroll - обновляем активную карточку при свайпе
-        let scrollTimeout;
-        tariffsGrid.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                const newIndex = getCurrentCardIndex();
-                if (newIndex !== currentIndex) {
-                    currentIndex = newIndex;
-                    cards.forEach((c, i) => {
-                        c.classList.toggle('active', i === currentIndex);
-                    });
-                }
                 updateArrowsState();
-            }, 100);
-        });
+            };
 
-        leftArrow.addEventListener('click', () => {
-            if (!leftArrow.classList.contains('disabled')) {
-                scrollToCard(currentIndex - 1);
-            }
-        });
+            // Обновление состояния стрелок
+            const updateArrowsState = () => {
+                if (leftArrow) {
+                    leftArrow.classList.toggle('disabled', currentIndex <= 0);
+                }
+                if (rightArrow) {
+                    rightArrow.classList.toggle('disabled', currentIndex >= cards.length - 1);
+                }
+            };
 
-        rightArrow.addEventListener('click', () => {
-            if (!rightArrow.classList.contains('disabled')) {
-                scrollToCard(currentIndex + 1);
+            // Клик по точкам
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    updateStack(i);
+                });
+            });
+
+            // Начальное состояние
+            updateStack(currentIndex);
+
+            // Обработчики стрелок
+            if (leftArrow) {
+                leftArrow.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        updateStack(currentIndex - 1);
+                    }
+                });
             }
-        });
+
+            if (rightArrow) {
+                rightArrow.addEventListener('click', () => {
+                    if (currentIndex < cards.length - 1) {
+                        updateStack(currentIndex + 1);
+                    }
+                });
+            }
+
+            // Свайп пальцем
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            tariffsGrid.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            tariffsGrid.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > 50) { // Минимальное расстояние свайпа
+                    if (diff > 0 && currentIndex < cards.length - 1) {
+                        // Свайп влево - следующая карточка
+                        updateStack(currentIndex + 1);
+                    } else if (diff < 0 && currentIndex > 0) {
+                        // Свайп вправо - предыдущая карточка
+                        updateStack(currentIndex - 1);
+                    }
+                }
+            }, { passive: true });
+
+            // Показываем/скрываем стрелки при видимости секции тарифов
+            const tariffsSection = document.querySelector('.tariffs');
+            if (tariffsSection && 'IntersectionObserver' in window) {
+                const arrowsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        tariffsSection.classList.toggle('arrows-visible', entry.isIntersecting);
+                    });
+                }, {
+                    threshold: 0.5
+                });
+                arrowsObserver.observe(tariffsSection);
+            }
+        }
     }
 });
 
@@ -452,11 +408,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mobile tap toggle for grid items
-    if ('ontouchstart' in window) {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
         gridItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 // Не срабатываем на ссылках
                 if (e.target.closest('a')) return;
+
+                e.stopPropagation();
 
                 // Toggle active class
                 if (this.classList.contains('tapped')) {
