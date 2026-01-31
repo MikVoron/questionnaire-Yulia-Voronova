@@ -56,6 +56,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Tariffs card selection on desktop - switch border on click
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 768) {
+        const tariffCards = document.querySelectorAll('.tariffs-grid .tariff-card-collapsible');
+
+        if (tariffCards.length > 0) {
+            tariffCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't switch if clicking on a link/button
+                    if (e.target.closest('a, button')) return;
+
+                    // Remove popular from all cards
+                    tariffCards.forEach(c => c.classList.remove('popular'));
+
+                    // Add popular to clicked card
+                    card.classList.add('popular');
+                });
+            });
+        }
+    }
+});
+
 // Tariffs carousel - scroll to middle card (КОНСУЛЬТАЦИЯ 1+1) on mobile
 // Tariffs Stack Carousel - стопка карточек
 document.addEventListener('DOMContentLoaded', () => {
@@ -293,6 +315,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
         stepItems.forEach(item => {
             observer.observe(item);
+        });
+    }
+});
+
+// Scroll animations for sections (Services Range, FAQ, Telegram Subscribe)
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedSections = document.querySelectorAll('.services-range, .faq, .telegram-subscribe');
+
+    if (animatedSections.length > 0 && 'IntersectionObserver' in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-visible');
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animatedSections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+    }
+});
+
+// Scroll animations for About page sections
+document.addEventListener('DOMContentLoaded', () => {
+    const aboutSections = document.querySelectorAll('.about-help-section, .about-youtube-section, .diplomas');
+
+    if (aboutSections.length > 0 && 'IntersectionObserver' in window) {
+        const aboutObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-visible');
+                    aboutObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        aboutSections.forEach(section => {
+            aboutObserver.observe(section);
         });
     }
 });
