@@ -1,0 +1,10 @@
+# robots.txt for voronova.online
+User-agent: *
+Allow: /
+
+# Disallow technical pages
+Disallow: /thanks.html
+Disallow: /pdf-content.html
+
+# Sitemap
+Sitemap: https://voronova.online/sitemap.xml
