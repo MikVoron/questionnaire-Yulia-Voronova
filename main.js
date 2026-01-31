@@ -558,7 +558,6 @@ window.addEventListener('scroll', () => {
 
 // Tariff card expand/collapse functionality (Variant 1)
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Tariff cards script loaded');
 
     // Инициализация: присваиваем уникальные ID и ЯВНО закрываем все карточки
     const allCards = document.querySelectorAll('.tariff-card-collapsible');
